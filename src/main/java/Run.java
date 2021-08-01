@@ -1,17 +1,17 @@
-import custom_math.ConeGeometry;
-import custom_math.impl.ConeGeometryImpl;
-import geometric_objects.Cone;
+import geometric_object.*;
+import geometric_object.object_context.GeometricObjectContext;
+import geometry.cone_geometry.ConeGeometry;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 public class Run {
     public final static Logger LOG = LogManager.getLogger(Run.class);
     public static void main(String[] args) {
-        LOG.info("Program start");
-
-        ConeGeometry geometry = new ConeGeometryImpl();
-        Cone cone = new Cone(0, 0,0,5,5);
-        LOG.info("Объём конуса " + geometry.volume(cone));
-        LOG.info("Площадь поверхности " + geometry.surfaceArea(cone));
+        GeometricObjectContext context =
+                GeometricObjectContext.of(GeometricObjectType.CONE, 0,0,0).setHeight(10.0).setRadius(15.0).build();
+        GeometricObject cone = GeometricObject.of(context);
+        ConeGeometry geometry = ConeGeometry.instance();
+        if(geometry.isCone(cone))
+            LOG.info(geometry.surfaceArea((Cone) cone));
     }
 }

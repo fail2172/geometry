@@ -6,11 +6,12 @@ import java.util.Objects;
 
 public class Circle implements GeometricObject {
     private final Point center;
-    private final double radius;
+    private final Double radius;
 
-    Circle(double x, double y, double z, double radius) {
+    Circle(double x, double y, double z, Double radius) {
+        GeometricFactory factory = GeometricFactory.instance();
         GeometricObjectContext context = GeometricObjectContext.of(GeometricObjectType.POINT, x, y, z).build();
-        this.center = (Point) GeometricObject.of(context);
+        this.center = (Point) factory.createObject(context);
         this.radius = radius;
     }
 

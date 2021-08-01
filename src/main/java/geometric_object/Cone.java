@@ -6,12 +6,13 @@ import java.util.Objects;
 
 public class Cone implements GeometricObject {
     private final Circle base;
-    private final double height;
+    private final Double height;
 
-    Cone(double x, double y, double z, double height, double radiusOfBase) {
+    Cone(double x, double y, double z, Double height, Double radiusOfBase) {
+        GeometricFactory factory = GeometricFactory.instance();
         GeometricObjectContext context = GeometricObjectContext.of(
                 GeometricObjectType.CIRCLE, x, y, z).setRadius(radiusOfBase).build();
-        this.base = (Circle) GeometricObject.of(context);
+        this.base = (Circle) factory.createObject(context);
         this.height = height;
     }
 

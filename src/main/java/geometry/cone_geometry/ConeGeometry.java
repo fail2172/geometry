@@ -8,6 +8,7 @@ public interface ConeGeometry{
     double surfaceArea(Cone cone);
     double volume(Cone cone);
     double volumeRatio(Cone cone, CoordinatePlane plane);
+    double longitudinalSectionArea(Cone cone, CoordinatePlane plane);
     boolean isCone(GeometricObject object);
 
     static ConeGeometry instance(){

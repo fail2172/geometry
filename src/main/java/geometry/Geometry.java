@@ -1,14 +1,12 @@
 package geometry;
 
 public final class Geometry {
-    public static final double PI = 3.14;
-
     public static double circleArea(double radius) {
-        return PI * Math.pow(radius, 2);
+        return Math.PI * Math.pow(radius, 2);
     }
 
     public static double circumference(double radius) {
-        return 2 * PI * radius;
+        return 2 * Math.PI * radius;
     }
 
     public static double hypotenuse(double leg1, double leg2) {

@@ -4,6 +4,7 @@ import geometric_object.CoordinatePlane;
 import geometric_object.GeometricObject;
 import geometric_object.Cone;
 import geometry.Geometry;
+import geometry.circle_geometry.CircleGeometry;
 
 class ConeGeometryImpl implements ConeGeometry {
 
@@ -27,6 +28,12 @@ class ConeGeometryImpl implements ConeGeometry {
     public double volumeRatio(Cone cone, CoordinatePlane plane) {
         return Math.pow(cone.getBase().getCenter().getY() + cone.getHeight(), 2)
                 / (Math.pow(cone.getHeight(), 2) - Math.pow(cone.getBase().getCenter().getY() + cone.getHeight(), 2));
+    }
+
+    @Override
+    public double longitudinalSectionArea(Cone cone, CoordinatePlane plane) {
+        CircleGeometry circleGeometry = CircleGeometry.instance();
+        return circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane) * cone.getHeight() / 2;
     }
 
     @Override

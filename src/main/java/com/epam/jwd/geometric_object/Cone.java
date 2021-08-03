@@ -29,7 +29,7 @@ public class Cone implements GeometricObject {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cone cone = (Cone) o;
-        return Double.compare(cone.height, height) == 0 && Objects.equals(base, cone.base);
+        return base.equals(cone.base) && height.equals(cone.height);
     }
 
     @Override

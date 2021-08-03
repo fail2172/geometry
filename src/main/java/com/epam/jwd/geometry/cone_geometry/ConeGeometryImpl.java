@@ -39,4 +39,9 @@ class ConeGeometryImpl implements ConeGeometry {
     public boolean isCone(Object object) {
         return object instanceof Cone;
     }
+
+    @Override
+    public boolean baseOnTheCoordinatePlane(Cone cone) {
+        return cone.getBase().getCenter().getZ() == 0;
+    }
 }

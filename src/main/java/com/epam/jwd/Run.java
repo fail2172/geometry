@@ -1,18 +1,25 @@
 package com.epam.jwd;
 
-import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
+import com.epam.jwd.file_reader.CustomFileReader;
+import com.epam.jwd.geometric_object.GeometricObject;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import com.epam.jwd.validation.FileReaderValidation;
+
+import java.io.File;
+import java.util.List;
 
 public class Run {
+
     public final static Logger LOG = LogManager.getLogger(Run.class);
+
     public static void main(String[] args) throws Exception {
-        String str = new String("5.0;10.0;0.0 0.0 0.0");
+        File file = new File("src\\main\\resources\\cone.txt");
+        CustomFileReader fileReader = CustomFileReader.instance();
+        List<GeometricObject> geometricObjectList = fileReader.readFile(file);
 
-        FileReaderValidation fileReaderValidation = FileReaderValidation.instance();
-
-        GeometricObjectContext context = fileReaderValidation.getGeometricObjectContext(str);
-        LOG.info(context);
+        for (var object : geometricObjectList
+             ) {
+            LOG.info(object);
+        }
     }
 }

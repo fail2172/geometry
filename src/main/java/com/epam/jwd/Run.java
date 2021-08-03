@@ -1,7 +1,9 @@
-import geometric_object.object_context.GeometricObjectContext;
+package com.epam.jwd;
+
+import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import validation.FileReaderValidation;
+import com.epam.jwd.validation.FileReaderValidation;
 
 public class Run {
     public final static Logger LOG = LogManager.getLogger(Run.class);

@@ -1,6 +1,6 @@
-package geometric_object.object_context;
+package com.epam.jwd.geometric_object.object_context;
 
-import geometric_object.GeometricObjectType;
+import com.epam.jwd.geometric_object.GeometricObjectType;
 
 import java.util.Objects;
 

@@ -1,8 +1,8 @@
-package validation;
+package com.epam.jwd.validation;
 
-import exception.IncorrectInputException;
-import geometric_object.GeometricObjectType;
-import geometric_object.object_context.GeometricObjectContext;
+import com.epam.jwd.exception.IncorrectInputException;
+import com.epam.jwd.geometric_object.GeometricObjectType;
+import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
 
 public class FileReaderValidationImpl implements FileReaderValidation {
     private final static String INCORRECT_INPUT_MESSAGE = "Incorrect input";

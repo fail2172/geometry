@@ -1,4 +1,4 @@
-package geometric_object;
+package com.epam.jwd.geometric_object;
 
 import java.util.Objects;
 

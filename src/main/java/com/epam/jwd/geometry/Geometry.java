@@ -1,4 +1,4 @@
-package geometry;
+package com.epam.jwd.geometry;
 
 public final class Geometry {
     public static double circleArea(double radius) {

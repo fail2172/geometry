@@ -1,8 +1,8 @@
-package geometry.circle_geometry;
+package com.epam.jwd.geometry.circle_geometry;
 
-import geometric_object.Circle;
-import geometric_object.CoordinatePlane;
-import geometry.Geometry;
+import com.epam.jwd.geometric_object.Circle;
+import com.epam.jwd.geometric_object.CoordinatePlane;
+import com.epam.jwd.geometry.Geometry;
 
 public class CircleGeometryImpl implements CircleGeometry {
     @Override

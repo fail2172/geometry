@@ -1,7 +1,7 @@
-package geometry.cone_geometry;
+package com.epam.jwd.geometry.cone_geometry;
 
-import geometric_object.CoordinatePlane;
-import geometric_object.Cone;
+import com.epam.jwd.geometric_object.CoordinatePlane;
+import com.epam.jwd.geometric_object.Cone;
 
 public interface ConeGeometry {
     double surfaceArea(Cone cone);

@@ -1,6 +1,6 @@
-package geometric_object;
+package com.epam.jwd.geometric_object;
 
-import geometric_object.object_context.GeometricObjectContext;
+import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
 
 public class GeometricObjectFactory implements GeometricFactory{
     GeometricObjectFactory(){

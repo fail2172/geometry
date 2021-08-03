@@ -1,9 +1,9 @@
-package geometry.cone_geometry;
+package com.epam.jwd.geometry.cone_geometry;
 
-import geometric_object.CoordinatePlane;
-import geometric_object.Cone;
-import geometry.Geometry;
-import geometry.circle_geometry.CircleGeometry;
+import com.epam.jwd.geometric_object.CoordinatePlane;
+import com.epam.jwd.geometric_object.Cone;
+import com.epam.jwd.geometry.Geometry;
+import com.epam.jwd.geometry.circle_geometry.CircleGeometry;
 
 class ConeGeometryImpl implements ConeGeometry {
 

@@ -1,7 +1,6 @@
 package geometry.cone_geometry;
 
 import geometric_object.CoordinatePlane;
-import geometric_object.GeometricObject;
 import geometric_object.Cone;
 import geometry.Geometry;
 import geometry.circle_geometry.CircleGeometry;
@@ -37,7 +36,7 @@ class ConeGeometryImpl implements ConeGeometry {
     }
 
     @Override
-    public boolean isCone(GeometricObject object) {
+    public boolean isCone(Object object) {
         return object instanceof Cone;
     }
 }

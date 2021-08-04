@@ -1,25 +1,23 @@
 package com.epam.jwd.validation;
 
 import com.epam.jwd.exception.IncorrectInputException;
-import com.epam.jwd.geometric_object.GeometricObjectType;
-import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
 
-import java.util.regex.Pattern;
-
-public class FileReaderValidationImpl implements FileReaderValidation {
+public class GeometricContextValidator implements Validator {
     private final static String INCORRECT_INPUT_MESSAGE = "Incorrect input";
     private final static String PARAMETERS_COUNT = "incorrect parameters count";
     private final static String HEIGHT_OF_CONE = "height of cone";
     private final static String RADIUS_OF_CONE = "radius of cone";
     private final static String BASE_COORDINATES = "center base coordinates";
+    private final static String SEMICOLON_SEPARATOR = ";";
+    private final static String SPACE_SEPARATOR = " ";
 
-    FileReaderValidationImpl() {
+    GeometricContextValidator() {
 
     }
 
     @Override
-    public void getGeometricObjectContext(String stringContext) throws IncorrectInputException {
-        String[] coneParameters = stringContext.split(";");
+    public void checkContext(String stringContext) throws IncorrectInputException {
+        String[] coneParameters = stringContext.split(SEMICOLON_SEPARATOR);
         if (coneParameters.length != 3) {
             throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, PARAMETERS_COUNT);
         }
@@ -42,7 +40,7 @@ public class FileReaderValidationImpl implements FileReaderValidation {
             throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, RADIUS_OF_CONE);
         }
 
-        String[] centerBaseCoordinates = coneParameters[2].split(" ");
+        String[] centerBaseCoordinates = coneParameters[2].split(SPACE_SEPARATOR);
         if (centerBaseCoordinates.length != 3) {
             throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, BASE_COORDINATES);
         }

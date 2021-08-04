@@ -1,6 +1,8 @@
 package com.epam.jwd.geometric_object.object_context;
 
+import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.geometric_object.GeometricObjectType;
+import com.epam.jwd.validation.Validator;
 
 import java.util.Objects;
 
@@ -74,6 +76,27 @@ public class GeometricObjectContext {
 
     public static Builder of(GeometricObjectType type, double x, double y, double z) {
         return new GeometricObjectContext(type, x, y, z).new Builder();
+    }
+
+    public static GeometricObjectContext stringToContext(String stringContext) throws IncorrectInputException {
+        final String SEMICOLON_SEPARATOR = ";";
+        final String SPACE_SEPARATOR = " ";
+
+        Validator validator = Validator.instance();
+        validator.checkContext(stringContext);
+
+        String[] coneParameters = stringContext.split(SEMICOLON_SEPARATOR);
+
+        double height = Double.parseDouble(coneParameters[0]);
+        double radius = Double.parseDouble(coneParameters[1]);
+
+        String[] centerBaseCoordinates = coneParameters[2].split(SPACE_SEPARATOR);
+
+        double x = Double.parseDouble(centerBaseCoordinates[0]);
+        double y = Double.parseDouble(centerBaseCoordinates[1]);
+        double z = Double.parseDouble(centerBaseCoordinates[2]);
+
+        return GeometricObjectContext.of(GeometricObjectType.CONE, x, y, z).setHeight(height).setRadius(radius).build();
     }
 
     public class Builder {

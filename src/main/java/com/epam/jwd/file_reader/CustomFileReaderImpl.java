@@ -5,7 +5,6 @@ import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.geometric_object.GeometricFactory;
 import com.epam.jwd.geometric_object.GeometricObject;
 import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
-import com.epam.jwd.validation.FileReaderValidation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,15 +21,14 @@ public class CustomFileReaderImpl implements CustomFileReader {
 
         try (FileReader fileReader = new FileReader(file)) {
             Scanner scanner = new Scanner(fileReader);
-            FileReaderValidation fileReaderValidation = FileReaderValidation.instance();
             GeometricFactory factory = GeometricFactory.instance();
 
             while (scanner.hasNextLine()) {
                 String geometricObjectContext = scanner.nextLine();
                 try {
-                    GeometricObjectContext context = fileReaderValidation.getGeometricObjectContext(geometricObjectContext);
+                    GeometricObjectContext context = GeometricObjectContext.stringToContext(geometricObjectContext);
                     geometricObjects.add(factory.createObject(context));
-                } catch (IncorrectInputException e) {
+                } catch (IncorrectInputException | NumberFormatException e) {
                     Run.LOG.error(e.getMessage());
                 }
             }

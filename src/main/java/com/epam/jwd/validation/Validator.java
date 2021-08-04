@@ -2,10 +2,10 @@ package com.epam.jwd.validation;
 
 import com.epam.jwd.exception.IncorrectInputException;
 
-public interface FileReaderValidation {
-    void getGeometricObjectContext(String stringContext) throws IncorrectInputException;
+public interface Validator {
+    void checkContext(String stringContext) throws IncorrectInputException;
 
-    static FileReaderValidation instance(){
-        return new FileReaderValidationImpl();
+    static Validator instance(){
+        return new GeometricContextValidator();
     }
 }

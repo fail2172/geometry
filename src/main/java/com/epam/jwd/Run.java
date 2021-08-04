@@ -13,7 +13,7 @@ public class Run {
     public final static Logger LOG = LogManager.getLogger(Run.class);
 
     public static void main(String[] args) throws Exception {
-        File file = new File("src\\main\\resources\\cone.txt");
+        File file = new File("src/resources/cone.txt");
         CustomFileReader fileReader = CustomFileReader.instance();
         List<GeometricObject> geometricObjectList = fileReader.readFile(file);
 

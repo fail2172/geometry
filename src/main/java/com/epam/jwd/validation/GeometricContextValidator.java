@@ -4,6 +4,8 @@ import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.geometric_object.GeometricObjectType;
 import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
 
+import java.util.regex.Pattern;
+
 public class FileReaderValidationImpl implements FileReaderValidation {
     private final static String INCORRECT_INPUT_MESSAGE = "Incorrect input";
     private final static String PARAMETERS_COUNT = "incorrect parameters count";
@@ -16,32 +18,41 @@ public class FileReaderValidationImpl implements FileReaderValidation {
     }
 
     @Override
-    public GeometricObjectContext getGeometricObjectContext(String stringContext) throws IncorrectInputException {
-
+    public void getGeometricObjectContext(String stringContext) throws IncorrectInputException {
         String[] coneParameters = stringContext.split(";");
-        if (coneParameters.length != 3){
+        if (coneParameters.length != 3) {
             throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, PARAMETERS_COUNT);
         }
 
-        double height = Double.parseDouble(coneParameters[0]);
-        if(height <= 0){
+        try {
+            double height = Double.parseDouble(coneParameters[0]);
+            if (height <= 0) {
+                throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, HEIGHT_OF_CONE);
+            }
+        } catch (NumberFormatException e) {
             throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, HEIGHT_OF_CONE);
         }
 
-        double radius = Double.parseDouble(coneParameters[1]);
-        if(radius <= 0){
+        try {
+            double radius = Double.parseDouble(coneParameters[1]);
+            if (radius <= 0) {
+                throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, RADIUS_OF_CONE);
+            }
+        } catch (NumberFormatException e) {
             throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, RADIUS_OF_CONE);
         }
 
         String[] centerBaseCoordinates = coneParameters[2].split(" ");
-        if (centerBaseCoordinates.length != 3){
+        if (centerBaseCoordinates.length != 3) {
             throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, BASE_COORDINATES);
         }
 
-        double x = Double.parseDouble(centerBaseCoordinates[0]);
-        double y = Double.parseDouble(centerBaseCoordinates[1]);
-        double z = Double.parseDouble(centerBaseCoordinates[2]);
-
-        return GeometricObjectContext.of(GeometricObjectType.CONE, x,y,z).setHeight(height).setRadius(radius).build();
+        try {
+            double x = Double.parseDouble(centerBaseCoordinates[0]);
+            double y = Double.parseDouble(centerBaseCoordinates[1]);
+            double z = Double.parseDouble(centerBaseCoordinates[2]);
+        } catch (NumberFormatException e) {
+            throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, BASE_COORDINATES);
+        }
     }
 }

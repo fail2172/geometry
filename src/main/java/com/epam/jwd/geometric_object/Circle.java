@@ -1,7 +1,5 @@
 package com.epam.jwd.geometric_object;
 
-import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
-
 import java.util.Objects;
 
 public class Circle implements GeometricObject {
@@ -9,9 +7,7 @@ public class Circle implements GeometricObject {
     private final Double radius;
 
     Circle(double x, double y, double z, Double radius) {
-        GeometricFactory factory = GeometricFactory.instance();
-        GeometricObjectContext context = GeometricObjectContext.of(GeometricObjectType.POINT, x, y, z).build();
-        this.center = (Point) factory.createObject(context);
+        this.center = new Point(x, y, z);
         this.radius = radius;
     }
 

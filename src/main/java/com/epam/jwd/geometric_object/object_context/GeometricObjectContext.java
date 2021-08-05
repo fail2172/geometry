@@ -79,11 +79,11 @@ public class GeometricObjectContext {
     }
 
     public static GeometricObjectContext stringToContext(String stringContext) throws IncorrectInputException {
-        final String SEMICOLON_SEPARATOR = ";";
-        final String SPACE_SEPARATOR = " ";
-
         Validator validator = Validator.instance();
         validator.checkContext(stringContext);
+
+        final String SEMICOLON_SEPARATOR = ";";
+        final String SPACE_SEPARATOR = " ";
 
         String[] coneParameters = stringContext.split(SEMICOLON_SEPARATOR);
 

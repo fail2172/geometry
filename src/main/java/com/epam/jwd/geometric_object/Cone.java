@@ -1,7 +1,5 @@
 package com.epam.jwd.geometric_object;
 
-import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
-
 import java.util.Objects;
 
 public class Cone implements GeometricObject {
@@ -9,10 +7,7 @@ public class Cone implements GeometricObject {
     private final Double height;
 
     Cone(double x, double y, double z, Double height, Double radiusOfBase) {
-        GeometricFactory factory = GeometricFactory.instance();
-        GeometricObjectContext context = GeometricObjectContext.of(
-                GeometricObjectType.CIRCLE, x, y, z).setRadius(radiusOfBase).build();
-        this.base = (Circle) factory.createObject(context);
+        this.base = new Circle(x, y, z, radiusOfBase);
         this.height = height;
     }
 

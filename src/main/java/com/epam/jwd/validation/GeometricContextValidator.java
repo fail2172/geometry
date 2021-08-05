@@ -46,9 +46,9 @@ public class GeometricContextValidator implements Validator {
         }
 
         try {
-            double x = Double.parseDouble(centerBaseCoordinates[0]);
-            double y = Double.parseDouble(centerBaseCoordinates[1]);
-            double z = Double.parseDouble(centerBaseCoordinates[2]);
+            Double.parseDouble(centerBaseCoordinates[0]);
+            Double.parseDouble(centerBaseCoordinates[1]);
+            Double.parseDouble(centerBaseCoordinates[2]);
         } catch (NumberFormatException e) {
             throw new IncorrectInputException(INCORRECT_INPUT_MESSAGE, BASE_COORDINATES);
         }

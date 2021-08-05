@@ -32,7 +32,30 @@ class ConeGeometryImpl implements ConeGeometry {
     @Override
     public double longitudinalSectionArea(Cone cone, CoordinatePlane plane) {
         CircleGeometry circleGeometry = CircleGeometry.instance();
-        return circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane) * cone.getHeight() / 2;
+        return switch (plane) {
+            case XY -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
+                    * cone.getHeight() / 2;
+            case YZ -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
+                    * (cone.getBase().getRadius() - Math.abs(cone.getBase().getCenter().getX()))
+                    * cone.getHeight() / 2;
+            case XZ -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
+                    * (cone.getBase().getRadius() - Math.abs(cone.getBase().getCenter().getY()))
+                    * cone.getHeight() / 2;
+        };
+    }
+
+    private double cutOffVolume(Cone cone, CoordinatePlane plane){
+        CircleGeometry circleGeometry = CircleGeometry.instance();
+        return switch (plane) {
+            case XY -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
+                    * cone.getHeight() / 2;
+            case YZ -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
+                    * (cone.getBase().getRadius() - Math.abs(cone.getBase().getCenter().getX()))
+                    * cone.getHeight() / 2;
+            case XZ -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
+                    * (cone.getBase().getRadius() - Math.abs(cone.getBase().getCenter().getY()))
+                    * cone.getHeight() / 2;
+        };
     }
 
     @Override

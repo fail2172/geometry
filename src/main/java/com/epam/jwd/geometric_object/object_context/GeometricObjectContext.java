@@ -80,23 +80,26 @@ public class GeometricObjectContext {
 
     public static GeometricObjectContext stringToContext(String stringContext) throws IncorrectInputException {
         Validator validator = Validator.instance();
-        validator.checkContext(stringContext);
 
-        final String SEMICOLON_SEPARATOR = ";";
-        final String SPACE_SEPARATOR = " ";
+        if(validator.checkContext(stringContext)) {
+            final String SEMICOLON_SEPARATOR = ";";
+            final String SPACE_SEPARATOR = " ";
 
-        String[] coneParameters = stringContext.split(SEMICOLON_SEPARATOR);
+            String[] coneParameters = stringContext.split(SEMICOLON_SEPARATOR);
 
-        double height = Double.parseDouble(coneParameters[0]);
-        double radius = Double.parseDouble(coneParameters[1]);
+            double height = Double.parseDouble(coneParameters[0]);
+            double radius = Double.parseDouble(coneParameters[1]);
 
-        String[] centerBaseCoordinates = coneParameters[2].split(SPACE_SEPARATOR);
+            String[] centerBaseCoordinates = coneParameters[2].split(SPACE_SEPARATOR);
 
-        double x = Double.parseDouble(centerBaseCoordinates[0]);
-        double y = Double.parseDouble(centerBaseCoordinates[1]);
-        double z = Double.parseDouble(centerBaseCoordinates[2]);
+            double x = Double.parseDouble(centerBaseCoordinates[0]);
+            double y = Double.parseDouble(centerBaseCoordinates[1]);
+            double z = Double.parseDouble(centerBaseCoordinates[2]);
 
-        return GeometricObjectContext.of(GeometricObjectType.CONE, x, y, z).setHeight(height).setRadius(radius).build();
+            return GeometricObjectContext.of(GeometricObjectType.CONE, x, y, z).setHeight(height).setRadius(radius).build();
+        }else {
+            throw new IncorrectInputException("d;lskjf", "lkj");
+        }
     }
 
     public class Builder {

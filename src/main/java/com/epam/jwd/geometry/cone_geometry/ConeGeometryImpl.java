@@ -1,9 +1,7 @@
 package com.epam.jwd.geometry.cone_geometry;
 
-import com.epam.jwd.geometric_object.CoordinatePlane;
 import com.epam.jwd.geometric_object.Cone;
 import com.epam.jwd.geometry.Geometry;
-import com.epam.jwd.geometry.circle_geometry.CircleGeometry;
 
 class ConeGeometryImpl implements ConeGeometry {
 
@@ -24,38 +22,9 @@ class ConeGeometryImpl implements ConeGeometry {
     }
 
     @Override
-    public double volumeRatio(Cone cone, CoordinatePlane plane) {
+    public double volumeRatio(Cone cone) {
         return Math.pow(cone.getBase().getCenter().getY() + cone.getHeight(), 2)
                 / (Math.pow(cone.getHeight(), 2) - Math.pow(cone.getBase().getCenter().getY() + cone.getHeight(), 2));
-    }
-
-    @Override
-    public double longitudinalSectionArea(Cone cone, CoordinatePlane plane) {
-        CircleGeometry circleGeometry = CircleGeometry.instance();
-        return switch (plane) {
-            case XY -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
-                    * cone.getHeight() / 2;
-            case YZ -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
-                    * (cone.getBase().getRadius() - Math.abs(cone.getBase().getCenter().getX()))
-                    * cone.getHeight() / 2;
-            case XZ -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
-                    * (cone.getBase().getRadius() - Math.abs(cone.getBase().getCenter().getY()))
-                    * cone.getHeight() / 2;
-        };
-    }
-
-    private double cutOffVolume(Cone cone, CoordinatePlane plane){
-        CircleGeometry circleGeometry = CircleGeometry.instance();
-        return switch (plane) {
-            case XY -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
-                    * cone.getHeight() / 2;
-            case YZ -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
-                    * (cone.getBase().getRadius() - Math.abs(cone.getBase().getCenter().getX()))
-                    * cone.getHeight() / 2;
-            case XZ -> circleGeometry.lengthOfTheSectionByTheCoordinatePlane(cone.getBase(), plane)
-                    * (cone.getBase().getRadius() - Math.abs(cone.getBase().getCenter().getY()))
-                    * cone.getHeight() / 2;
-        };
     }
 
     @Override

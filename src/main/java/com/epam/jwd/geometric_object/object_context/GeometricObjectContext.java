@@ -4,7 +4,11 @@ import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.geometric_object.GeometricObjectType;
 import com.epam.jwd.validation.Validator;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Objects;
+import java.util.Properties;
 
 public class GeometricObjectContext {
     private final GeometricObjectType type;
@@ -81,7 +85,7 @@ public class GeometricObjectContext {
     public static GeometricObjectContext stringToContext(String stringContext) throws IncorrectInputException {
         Validator validator = Validator.instance();
 
-        if(validator.checkContext(stringContext)) {
+        if (validator.checkContext(stringContext)) {
             final String SEMICOLON_SEPARATOR = ";";
             final String SPACE_SEPARATOR = " ";
 
@@ -97,8 +101,15 @@ public class GeometricObjectContext {
             double z = Double.parseDouble(centerBaseCoordinates[2]);
 
             return GeometricObjectContext.of(GeometricObjectType.CONE, x, y, z).setHeight(height).setRadius(radius).build();
-        }else {
-            throw new IncorrectInputException("d;lskjf", "lkj");
+        } else {
+            Properties properties = new Properties();
+            try {
+                FileInputStream stream = new FileInputStream("src/resources/exceptions.properties");
+                properties.load(stream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            throw new IncorrectInputException(properties.getProperty("INCORRECT_INPUT"));
         }
     }
 

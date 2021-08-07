@@ -1,7 +1,7 @@
 package com.epam.jwd.exception;
 
 public class IncorrectInputException extends Exception {
-    public IncorrectInputException(String errorType) {
-        super(errorType);
+    public IncorrectInputException(String message) {
+        super(message);
     }
 }

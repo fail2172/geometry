@@ -13,7 +13,6 @@
         <maven.compiler.target>15</maven.compiler.target>
     </properties>
 
-
     <dependencies>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -29,7 +28,7 @@
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
                 <version>6.8</version>
-        </dependency>
+            </dependency>
     </dependencies>
 
 </project>

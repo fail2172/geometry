@@ -11,6 +11,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 public class GeometricObjectContext {
+    public static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
     private final GeometricObjectType type;
 
     private final double x;
@@ -104,7 +105,7 @@ public class GeometricObjectContext {
         } else {
             Properties properties = new Properties();
             try {
-                FileInputStream stream = new FileInputStream("src/resources/exceptions.properties");
+                FileInputStream stream = new FileInputStream(EXCEPTIONS_PROPERTIES);
                 properties.load(stream);
             } catch (IOException e) {
                 e.printStackTrace();

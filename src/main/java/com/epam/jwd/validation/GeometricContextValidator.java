@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 public class GeometricContextValidator implements Validator {
 
     private final static Logger LOG = LogManager.getLogger(GeometricContextValidator.class);
+    public static final String REGULAR_EXPRESSION_PROPERTIES = "src/main/resources/regular_expression.properties";
 
     GeometricContextValidator() {
     }
@@ -20,7 +21,7 @@ public class GeometricContextValidator implements Validator {
     public boolean checkContext(String stringContext) {
         Properties properties = new Properties();
         try {
-            FileInputStream stream = new FileInputStream("src/resources/regular_expression.properties");
+            FileInputStream stream = new FileInputStream(REGULAR_EXPRESSION_PROPERTIES);
             properties.load(stream);
         } catch (IOException e) {
             LOG.error(e.getMessage());

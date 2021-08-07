@@ -34,7 +34,7 @@ public class CustomFileReaderImpl implements CustomFileReader {
                 try {
                     GeometricObjectContext context = GeometricObjectContext.stringToContext(geometricObjectContext);
                     geometricObjects.add(factory.createObject(context));
-                } catch (IncorrectInputException | NumberFormatException e) {
+                } catch (IncorrectInputException e) {
                     LOG.error(e.getMessage() + String.format(" : line %s", lineNum));
                 }
             }

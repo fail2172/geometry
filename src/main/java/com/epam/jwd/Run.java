@@ -13,13 +13,10 @@ public class Run {
     public final static Logger LOG = LogManager.getLogger(Run.class);
 
     public static void main(String[] args) throws Exception {
-        File file = new File("src/resources/test_cone.txt");
+        File file = new File("src/main/resources/test_cone.txt");
         CustomFileReader fileReader = CustomFileReader.instance();
         List<GeometricObject> geometricObjectList = fileReader.readFile(file);
 
-        for (var x : geometricObjectList
-             ) {
-            LOG.info(x);
-        }
+        System.out.println(12*Math.PI);
     }
 }

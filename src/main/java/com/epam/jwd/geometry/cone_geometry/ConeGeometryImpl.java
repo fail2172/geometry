@@ -2,8 +2,12 @@ package com.epam.jwd.geometry.cone_geometry;
 
 import com.epam.jwd.geometric_object.Cone;
 import com.epam.jwd.geometry.Geometry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 class ConeGeometryImpl implements ConeGeometry {
+
+    private final static Logger LOG = LogManager.getLogger(ConeGeometryImpl.class);
 
     ConeGeometryImpl() {
     }

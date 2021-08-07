@@ -87,7 +87,7 @@ public class GeometricObjectContext {
 
         if (validator.checkContext(stringContext)) {
             final String SEMICOLON_SEPARATOR = ";";
-            final String SPACE_SEPARATOR = " ";
+            final String SPACE_SEPARATOR = ",";
 
             String[] coneParameters = stringContext.split(SEMICOLON_SEPARATOR);
 

@@ -1,17 +1,19 @@
-package com.epam.jwd.geometric_object.object_context;
+package com.epam.jwd.entity.context;
 
 import com.epam.jwd.exception.IncorrectInputException;
-import com.epam.jwd.geometric_object.GeometricObjectType;
-import com.epam.jwd.validation.Validator;
+import com.epam.jwd.entity.GeometricObjectType;
+import com.epam.jwd.validator.Validator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Properties;
 
 public class GeometricObjectContext {
-    public static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
+    private final static Logger LOG = LogManager.getLogger(GeometricObjectContext.class);
+    private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
+    private static final String CREATING_GEOMETRIC_CONTEXT = "creating geometric context";
     private final GeometricObjectType type;
 
     private final double x;
@@ -22,6 +24,7 @@ public class GeometricObjectContext {
     private Double radius;
 
     private GeometricObjectContext(GeometricObjectType type, double x, double y, double z) {
+        LOG.trace(CREATING_GEOMETRIC_CONTEXT);
         this.type = type;
         this.x = x;
         this.y = y;
@@ -68,15 +71,31 @@ public class GeometricObjectContext {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GeometricObjectContext context = (GeometricObjectContext) o;
-        return x == context.x && y == context.y && z == context.z
-                && Objects.equals(height, context.height)
-                && Objects.equals(radius, context.radius);
+
+        GeometricObjectContext that = (GeometricObjectContext) o;
+
+        if (Double.compare(that.x, x) != 0) return false;
+        if (Double.compare(that.y, y) != 0) return false;
+        if (Double.compare(that.z, z) != 0) return false;
+        if (type != that.type) return false;
+        if (!height.equals(that.height)) return false;
+        return radius.equals(that.radius);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, z, height, radius);
+        int result;
+        long temp;
+        result = type.hashCode();
+        temp = Double.doubleToLongBits(x);
+        result = 17 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(y);
+        result = 71 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(z);
+        result = 33 * result + (int) (temp ^ (temp >>> 32));
+        result = 11 * result + height.hashCode();
+        result = 19 * result + radius.hashCode();
+        return result;
     }
 
     public static Builder of(GeometricObjectType type, double x, double y, double z) {

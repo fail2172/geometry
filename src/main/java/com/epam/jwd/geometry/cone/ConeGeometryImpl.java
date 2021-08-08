@@ -1,7 +1,7 @@
-package com.epam.jwd.geometry.cone_geometry;
+package com.epam.jwd.geometry.cone;
 
 import com.epam.jwd.exception.NoPlaneIntersection;
-import com.epam.jwd.geometric_object.Cone;
+import com.epam.jwd.entity.Cone;
 import com.epam.jwd.geometry.Geometry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,14 +12,13 @@ import java.util.Properties;
 
 class ConeGeometryImpl implements ConeGeometry {
     private final static Logger LOG = LogManager.getLogger(ConeGeometryImpl.class);
-    public static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
-    public static final String CONE_GEOMETRY_PROPERTIES = "src/main/resources/cone_geometry.properties";
+    private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
+    private static final String CONE_GEOMETRY_PROPERTIES = "src/main/resources/cone_geometry.properties";
     private Properties properties = null;
 
     ConeGeometryImpl() {
-        try {
+        try (FileInputStream stream = new FileInputStream(CONE_GEOMETRY_PROPERTIES)) {
             properties = new Properties();
-            FileInputStream stream = new FileInputStream(CONE_GEOMETRY_PROPERTIES);
             properties.load(stream);
         } catch (IOException e) {
             LOG.error(e.getMessage());
@@ -64,7 +63,7 @@ class ConeGeometryImpl implements ConeGeometry {
     }
 
     private void planeIntersection(Cone cone) throws NoPlaneIntersection {
-        if (cone.getBase().getCenter().getZ()>=0) {
+        if (cone.getBase().getCenter().getZ() >= 0) {
             Properties properties = new Properties();
             try {
                 FileInputStream stream = new FileInputStream(EXCEPTIONS_PROPERTIES);

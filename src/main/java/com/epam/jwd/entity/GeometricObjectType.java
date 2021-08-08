@@ -1,4 +1,4 @@
-package com.epam.jwd.geometric_object;
+package com.epam.jwd.entity;
 
 public enum GeometricObjectType {
     POINT,

@@ -1,6 +1,6 @@
-package com.epam.jwd.file_reader;
+package com.epam.jwd.reader;
 
-import com.epam.jwd.geometric_object.GeometricObject;
+import com.epam.jwd.entity.GeometricObject;
 
 import java.io.File;
 import java.io.IOException;

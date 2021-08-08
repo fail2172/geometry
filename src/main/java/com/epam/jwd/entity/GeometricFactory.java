@@ -1,6 +1,6 @@
-package com.epam.jwd.geometric_object;
+package com.epam.jwd.entity;
 
-import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
+import com.epam.jwd.entity.context.GeometricObjectContext;
 
 public interface GeometricFactory {
     GeometricObject createObject(GeometricObjectContext context);

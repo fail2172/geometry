@@ -1,9 +1,9 @@
-package com.epam.jwd.file_reader;
+package com.epam.jwd.reader;
 
 import com.epam.jwd.exception.IncorrectInputException;
-import com.epam.jwd.geometric_object.GeometricFactory;
-import com.epam.jwd.geometric_object.GeometricObject;
-import com.epam.jwd.geometric_object.object_context.GeometricObjectContext;
+import com.epam.jwd.entity.GeometricFactory;
+import com.epam.jwd.entity.GeometricObject;
+import com.epam.jwd.entity.context.GeometricObjectContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +17,10 @@ import java.util.Scanner;
 
 public class CustomFileReaderImpl implements CustomFileReader {
 
-    public static final Logger LOG = LogManager.getLogger(CustomFileReaderImpl.class);
+    CustomFileReaderImpl(){
+
+    }
+    private static final Logger LOG = LogManager.getLogger(CustomFileReaderImpl.class);
 
     @Override
     public List<GeometricObject> readFile(File file) throws IOException {

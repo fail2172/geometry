@@ -1,4 +1,4 @@
-package com.epam.jwd.validation;
+package com.epam.jwd.validator;
 
 import com.epam.jwd.exception.IncorrectInputException;
 

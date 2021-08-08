@@ -29,16 +29,6 @@ public class ConeGeometryTest {
         Assert.assertEquals(CONES_NUM, cones.size());
     }
 
-    @Test
-    public void testIsCone() {
-        Assert.assertTrue(geometry.isCone(cones.get(0)));
-    }
-
-    @Test
-    public void testBaseOnTheCoordinatePlane() {
-        Assert.assertFalse(geometry.baseOnTheCoordinatePlane((Cone) cones.get(0)));
-    }
-
     @DataProvider(name = "Data-Provider")
     public Object[][] SurfaceAreaParameters() {
         return new Object[][]{
@@ -48,6 +38,16 @@ public class ConeGeometryTest {
                 {cones.get(3),new Double[]{425.77218088885525, 396.490984031607, 0.014759133609948877}},
                 {cones.get(4),new Double[]{126.51093268345448, 92.36282401553991, 0.604401650618982}}
         };
+    }
+
+    @Test(dataProvider = "Data-Provider")
+    public void testIsCone(Cone cone, Double[] expected) {
+        Assert.assertTrue(geometry.isCone(cone));
+    }
+
+    @Test(dataProvider = "Data-Provider")
+    public void testBaseOnTheCoordinatePlane(Cone cone, Double[] expected) {
+        Assert.assertFalse(geometry.baseOnTheCoordinatePlane(cone));
     }
 
     @Test(dataProvider = "Data-Provider")

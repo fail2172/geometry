@@ -3,7 +3,7 @@ package com.epam.jwd.reader;
 import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.entity.GeometricFactory;
 import com.epam.jwd.entity.GeometricObject;
-import com.epam.jwd.entity.context.GeometricObjectContext;
+import com.epam.jwd.entity.context.GeometricContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,7 +35,7 @@ public class CustomFileReaderImpl implements CustomFileReader {
                 String geometricObjectContext = scanner.nextLine();
                 ++lineNum;
                 try {
-                    GeometricObjectContext context = GeometricObjectContext.stringToContext(geometricObjectContext);
+                    GeometricContext context = GeometricContext.stringToContext(geometricObjectContext);
                     geometricObjects.add(factory.createObject(context));
                 } catch (IncorrectInputException e) {
                     LOG.error(e.getMessage() + String.format(" : line %s", lineNum));

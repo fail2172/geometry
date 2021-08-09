@@ -10,8 +10,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class GeometricObjectContext {
-    private final static Logger LOG = LogManager.getLogger(GeometricObjectContext.class);
+public class GeometricContext {
+    private final static Logger LOG = LogManager.getLogger(GeometricContext.class);
     private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
     private static final String CREATING_GEOMETRIC_CONTEXT = "creating geometric context";
     private final GeometricObjectType type;
@@ -23,7 +23,7 @@ public class GeometricObjectContext {
     private Double height;
     private Double radius;
 
-    private GeometricObjectContext(GeometricObjectType type, double x, double y, double z) {
+    private GeometricContext(GeometricObjectType type, double x, double y, double z) {
         LOG.trace(CREATING_GEOMETRIC_CONTEXT);
         this.type = type;
         this.x = x;
@@ -72,7 +72,7 @@ public class GeometricObjectContext {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        GeometricObjectContext that = (GeometricObjectContext) o;
+        GeometricContext that = (GeometricContext) o;
 
         if (Double.compare(that.x, x) != 0) return false;
         if (Double.compare(that.y, y) != 0) return false;
@@ -99,10 +99,10 @@ public class GeometricObjectContext {
     }
 
     public static Builder of(GeometricObjectType type, double x, double y, double z) {
-        return new GeometricObjectContext(type, x, y, z).new Builder();
+        return new GeometricContext(type, x, y, z).new Builder();
     }
 
-    public static GeometricObjectContext stringToContext(String stringContext) throws IncorrectInputException {
+    public static GeometricContext stringToContext(String stringContext) throws IncorrectInputException {
         Validator validator = Validator.instance();
 
         if (validator.checkContext(stringContext)) {
@@ -120,7 +120,7 @@ public class GeometricObjectContext {
             double y = Double.parseDouble(centerBaseCoordinates[1]);
             double z = Double.parseDouble(centerBaseCoordinates[2]);
 
-            return GeometricObjectContext.of(GeometricObjectType.CONE, x, y, z).setHeight(height).setRadius(radius).build();
+            return GeometricContext.of(GeometricObjectType.CONE, x, y, z).setHeight(height).setRadius(radius).build();
         } else {
             Properties properties = new Properties();
             try {
@@ -139,17 +139,17 @@ public class GeometricObjectContext {
         }
 
         public Builder setHeight(Double height) {
-            GeometricObjectContext.this.height = height;
+            GeometricContext.this.height = height;
             return this;
         }
 
         public Builder setRadius(Double radius) {
-            GeometricObjectContext.this.radius = radius;
+            GeometricContext.this.radius = radius;
             return this;
         }
 
-        public GeometricObjectContext build() {
-            return GeometricObjectContext.this;
+        public GeometricContext build() {
+            return GeometricContext.this;
         }
     }
 }

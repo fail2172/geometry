@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.List;
 
 public class ConeGeometryTest {
-    private static final String TEST_CONE_TXT = "src/main/resources/test_cone.txt";
+    private static final String TEST_CONE_TXT = "src/test/resources/test_cone.txt";
     private static final int CONES_NUM = 5;
     private static final double DELTA = 0.001;
     private final ConeGeometry geometry = ConeGeometry.instance();
@@ -25,7 +25,7 @@ public class ConeGeometryTest {
     }
 
     @Test
-    public void testObjectsListSize(){
+    public void test_ObjectsListSize(){
         Assert.assertEquals(CONES_NUM, cones.size());
     }
 
@@ -46,22 +46,22 @@ public class ConeGeometryTest {
     }
 
     @Test(dataProvider = "Data-Provider")
-    public void testBaseOnTheCoordinatePlane(Cone cone, Double[] expected) {
+    public void test_checksIfTheConeIsOnTheCoordinatePlane(Cone cone, Double[] expected) {
         Assert.assertFalse(geometry.baseOnTheCoordinatePlane(cone));
     }
 
     @Test(dataProvider = "Data-Provider")
-    public void testSurfaceArea(Cone cone, Double[] expected) {
+    public void test_shouldReturnTheSurfaceAreaOfTheCone(Cone cone, Double[] expected) {
         Assert.assertEquals(expected[0], geometry.surfaceArea(cone), DELTA);
     }
 
     @Test(dataProvider = "Data-Provider")
-    public void testVolume(Cone cone, Double[] expected) {
+    public void test_shouldReturnTheVolumeOfTheCone(Cone cone, Double[] expected) {
         Assert.assertEquals(expected[1], geometry.volume(cone), DELTA);
     }
 
     @Test(dataProvider = "Data-Provider")
-    public void testVolumeRatio(Cone cone, Double[] expected) {
+    public void test_returnsVolumeRatio(Cone cone, Double[] expected) {
         Assert.assertEquals(expected[2], geometry.volumeRatio(cone), DELTA);
     }
 }

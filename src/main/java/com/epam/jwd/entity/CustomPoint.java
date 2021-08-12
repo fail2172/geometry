@@ -1,17 +1,12 @@
 package com.epam.jwd.entity;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class CustomPoint implements GeometricObject {
-    private final static Logger LOG = LogManager.getLogger(CustomPoint.class);
-    private static final String POINT_CREATION = "point creation";
+
     private final double x;
     private final double y;
     private final double z;
 
     CustomPoint(double x, double y, double z) {
-        LOG.trace(POINT_CREATION);
         this.x = x;
         this.y = y;
         this.z = z;

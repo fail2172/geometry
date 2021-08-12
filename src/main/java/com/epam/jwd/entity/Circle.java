@@ -1,17 +1,11 @@
 package com.epam.jwd.entity;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class Circle implements GeometricObject {
-    private final static Logger LOG = LogManager.getLogger(Circle.class);
-    private static final String CREATING_A_CIRCLE = "creating a circle";
 
     private final CustomPoint center;
     private final Double radius;
 
     Circle(double x, double y, double z, Double radius) {
-        LOG.trace(CREATING_A_CIRCLE);
         this.center = new CustomPoint(x, y, z);
         this.radius = radius;
     }

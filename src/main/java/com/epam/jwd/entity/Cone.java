@@ -1,21 +1,55 @@
 package com.epam.jwd.entity;
 
-public class Cone implements GeometricObject {
+import com.epam.jwd.registrar.CustomPublisher;
+import com.epam.jwd.registrar.ConeSubscriber;
 
-    private final Circle base;
-    private final Double height;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cone implements GeometricObject, CustomPublisher {
+
+    private Circle base;
+    private Double height;
+    private final List<ConeSubscriber> coneSubscribers;
 
     Cone(double x, double y, double z, Double height, Double radiusOfBase) {
         this.base = new Circle(x, y, z, radiusOfBase);
         this.height = height;
+        coneSubscribers = new ArrayList<>();
     }
 
     public double getHeight() {
         return height;
     }
 
-    public Circle getBase() {
-        return base;
+    public double getRadius(){
+        return base.getRadius();
+    }
+
+    public double getXOfCenterBase(){
+        return base.getCenter().getX();
+    }
+
+    public double getYOfCenterBase(){
+        return base.getCenter().getY();
+    }
+
+    public double getZOfCenterBase(){
+        return base.getCenter().getZ();
+    }
+
+    public void setRadius(Double radius) {
+        base.setRadius(radius);
+        notifySubscribers();
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+        notifySubscribers();
+    }
+
+    public void setCenter(Double x, Double y, Double z) {
+        base.setCenter(x, y, z);
     }
 
     @Override
@@ -42,5 +76,23 @@ public class Cone implements GeometricObject {
                 "base=" + base +
                 ", height=" + height +
                 '}';
+    }
+
+    @Override
+    public void subscribe(ConeSubscriber coneSubscriber) {
+        coneSubscribers.add(coneSubscriber);
+    }
+
+    @Override
+    public void unsubscribe(ConeSubscriber coneSubscriber) {
+        coneSubscribers.remove(coneSubscriber);
+    }
+
+    @Override
+    public void notifySubscribers() {
+        for (ConeSubscriber coneSubscriber : coneSubscribers
+        ) {
+            coneSubscriber.update(this);
+        }
     }
 }

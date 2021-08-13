@@ -22,8 +22,8 @@ class ConeGeometryImpl implements ConeGeometry {
         LOG.trace(messageReader.getMessage(CONE_GEOMETRY_PROPERTIES, "SURFACE_AREA"));
 
         return sectorArea(
-                hypotenuse(cone.getHeight(), cone.getBase().getRadius()),
-                circumference(cone.getBase().getRadius())) + circleArea(cone.getBase().getRadius());
+                hypotenuse(cone.getHeight(), cone.getRadius()),
+                circumference(cone.getRadius())) + circleArea(cone.getRadius());
     }
 
     @Override
@@ -31,7 +31,7 @@ class ConeGeometryImpl implements ConeGeometry {
 
         LOG.trace(messageReader.getMessage(CONE_GEOMETRY_PROPERTIES, "VOLUME"));
 
-        return circleArea(cone.getBase().getRadius()) * cone.getHeight() / 3;
+        return circleArea(cone.getRadius()) * cone.getHeight() / 3;
     }
 
     @Override
@@ -41,8 +41,8 @@ class ConeGeometryImpl implements ConeGeometry {
 
             LOG.trace(messageReader.getMessage(CONE_GEOMETRY_PROPERTIES, "VOLUME_RATIO"));
 
-            return Math.pow(cone.getBase().getCenter().getZ() + cone.getHeight(), 3)
-                    / (Math.pow(cone.getHeight(), 3) - Math.pow(cone.getBase().getCenter().getZ() + cone.getHeight(), 3));
+            return Math.pow(cone.getZOfCenterBase() + cone.getHeight(), 3)
+                    / (Math.pow(cone.getHeight(), 3) - Math.pow(cone.getZOfCenterBase() + cone.getHeight(), 3));
         } catch (NoPlaneIntersection e) {
             LOG.error(e.getMessage());
             return 0;
@@ -50,7 +50,7 @@ class ConeGeometryImpl implements ConeGeometry {
     }
 
     private void planeIntersection(Cone cone) throws NoPlaneIntersection {
-        if (cone.getBase().getCenter().getZ() >= 0) {
+        if (cone.getZOfCenterBase() >= 0) {
             throw new NoPlaneIntersection(messageReader.getMessage(EXCEPTIONS_PROPERTIES, "NO_PLANE_INTERSECTION"));
         }
     }
@@ -62,6 +62,6 @@ class ConeGeometryImpl implements ConeGeometry {
 
     @Override
     public boolean baseOnTheCoordinatePlane(Cone cone) {
-        return cone.getBase().getCenter().getZ() == 0;
+        return cone.getZOfCenterBase() == 0;
     }
 }

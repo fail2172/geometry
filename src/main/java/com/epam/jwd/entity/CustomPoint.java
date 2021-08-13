@@ -2,9 +2,9 @@ package com.epam.jwd.entity;
 
 public class CustomPoint implements GeometricObject {
 
-    private final double x;
-    private final double y;
-    private final double z;
+    private double x;
+    private double y;
+    private double z;
 
     CustomPoint(double x, double y, double z) {
         this.x = x;
@@ -22,6 +22,18 @@ public class CustomPoint implements GeometricObject {
 
     public double getZ() {
         return z;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setZ(double z) {
+        this.z = z;
     }
 
     @Override

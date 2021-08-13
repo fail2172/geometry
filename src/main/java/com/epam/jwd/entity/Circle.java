@@ -3,7 +3,7 @@ package com.epam.jwd.entity;
 public class Circle implements GeometricObject {
 
     private final CustomPoint center;
-    private final Double radius;
+    private Double radius;
 
     Circle(double x, double y, double z, Double radius) {
         this.center = new CustomPoint(x, y, z);
@@ -16,6 +16,16 @@ public class Circle implements GeometricObject {
 
     public double getRadius() {
         return radius;
+    }
+
+    public void setCenter(Double x, Double y, Double z) {
+        center.setX(x);
+        center.setY(y);
+        center.setZ(z);
+    }
+
+    public void setRadius(Double radius) {
+        this.radius = radius;
     }
 
     @Override

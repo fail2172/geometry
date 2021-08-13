@@ -4,7 +4,7 @@ import com.epam.jwd.entity.context.GeometricContext;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GeometricFabricTest {
+public class GeometricFactoryTest {
 
     private final GeometricFactory factory = GeometricFactory.instance();
 

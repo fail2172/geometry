@@ -34,14 +34,8 @@ public class GeometricContextTest {
         }
     }
 
-    @Test
-    public void stringToContext_shouldReturnIncorrectInputException(){
-        try {
-            GeometricContext.stringToContext("10.0;10.0;;lsdf0.0,0.0,0.0");
-
-            fail();
-        } catch (IncorrectInputException e) {
-            assertNotNull(e);
-        }
+    @Test(expectedExceptions = IncorrectInputException.class)
+    public void stringToContext_shouldReturnIncorrectInputException() throws IncorrectInputException {
+        GeometricContext.stringToContext("10.0;10.0;;lsdf0.0,0.0,0.0");
     }
 }

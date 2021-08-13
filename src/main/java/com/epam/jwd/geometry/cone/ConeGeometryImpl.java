@@ -3,26 +3,18 @@ package com.epam.jwd.geometry.cone;
 import com.epam.jwd.exception.NoPlaneIntersection;
 import com.epam.jwd.entity.Cone;
 import com.epam.jwd.geometry.Geometry;
+import com.epam.jwd.reader.MessageReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
 class ConeGeometryImpl implements ConeGeometry {
     private final static Logger LOG = LogManager.getLogger(ConeGeometryImpl.class);
+    private static final MessageReader messageReader = MessageReader.instance();
     private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
     private static final String CONE_GEOMETRY_PROPERTIES = "src/main/resources/cone_geometry.properties";
-    private Properties properties = null;
 
     ConeGeometryImpl() {
-        try (FileInputStream stream = new FileInputStream(CONE_GEOMETRY_PROPERTIES)) {
-            properties = new Properties();
-            properties.load(stream);
-        } catch (IOException e) {
-            LOG.error(e.getMessage());
-        }
+
     }
 
     @Override
@@ -31,7 +23,7 @@ class ConeGeometryImpl implements ConeGeometry {
                 Geometry.hypotenuse(cone.getHeight(), cone.getBase().getRadius()),
                 Geometry.circumference(cone.getBase().getRadius())) + Geometry.circleArea(cone.getBase().getRadius());
 
-        LOG.trace(properties.getProperty("SURFACE_AREA"));
+        LOG.trace(messageReader.getMessage(CONE_GEOMETRY_PROPERTIES, "SURFACE_AREA"));
 
         return result;
     }
@@ -40,7 +32,7 @@ class ConeGeometryImpl implements ConeGeometry {
     public double volume(Cone cone) {
         double result = Geometry.circleArea(cone.getBase().getRadius()) * cone.getHeight() / 3;
 
-        LOG.trace(properties.getProperty("VOLUME"));
+        LOG.trace(messageReader.getMessage(CONE_GEOMETRY_PROPERTIES, "VOLUME"));
 
         return result;
     }
@@ -53,7 +45,7 @@ class ConeGeometryImpl implements ConeGeometry {
             double result = Math.pow(cone.getBase().getCenter().getZ() + cone.getHeight(), 3)
                     / (Math.pow(cone.getHeight(), 3) - Math.pow(cone.getBase().getCenter().getZ() + cone.getHeight(), 3));
 
-            LOG.trace(properties.getProperty("VOLUME_RATIO"));
+            LOG.trace(messageReader.getMessage(CONE_GEOMETRY_PROPERTIES, "VOLUME_RATIO"));
 
             return result;
         } catch (NoPlaneIntersection e) {
@@ -64,14 +56,7 @@ class ConeGeometryImpl implements ConeGeometry {
 
     private void planeIntersection(Cone cone) throws NoPlaneIntersection {
         if (cone.getBase().getCenter().getZ() >= 0) {
-            Properties properties = new Properties();
-            try {
-                FileInputStream stream = new FileInputStream(EXCEPTIONS_PROPERTIES);
-                properties.load(stream);
-            } catch (IOException e) {
-                LOG.error(e.getMessage());
-            }
-            throw new NoPlaneIntersection(properties.getProperty("NO_PLANE_INTERSECTION"));
+            throw new NoPlaneIntersection(messageReader.getMessage(EXCEPTIONS_PROPERTIES, "NO_PLANE_INTERSECTION"));
         }
     }
 

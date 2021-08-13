@@ -17,10 +17,10 @@ import java.util.Scanner;
 
 public class CustomFileReaderImpl implements CustomFileReader {
 
-    CustomFileReaderImpl(){
-
-    }
     private static final Logger LOG = LogManager.getLogger(CustomFileReaderImpl.class);
+
+    CustomFileReaderImpl() {
+    }
 
     @Override
     public List<GeometricObject> readFile(File file) throws IOException {

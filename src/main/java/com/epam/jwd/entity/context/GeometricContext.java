@@ -2,18 +2,12 @@ package com.epam.jwd.entity.context;
 
 import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.entity.GeometricObjectType;
+import com.epam.jwd.reader.MessageReader;
 import com.epam.jwd.validator.Validator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
 
 public class GeometricContext {
-    private final static Logger LOG = LogManager.getLogger(GeometricContext.class);
     private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
-    private static final String CREATING_GEOMETRIC_CONTEXT = "creating geometric context";
+    private final static MessageReader messageReader = MessageReader.instance();
     private final GeometricObjectType type;
 
     private final double x;
@@ -24,7 +18,6 @@ public class GeometricContext {
     private Double radius;
 
     private GeometricContext(GeometricObjectType type, double x, double y, double z) {
-        LOG.trace(CREATING_GEOMETRIC_CONTEXT);
         this.type = type;
         this.x = x;
         this.y = y;
@@ -122,14 +115,7 @@ public class GeometricContext {
 
             return GeometricContext.of(GeometricObjectType.CONE, x, y, z).setHeight(height).setRadius(radius).build();
         } else {
-            Properties properties = new Properties();
-            try {
-                FileInputStream stream = new FileInputStream(EXCEPTIONS_PROPERTIES);
-                properties.load(stream);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            throw new IncorrectInputException(properties.getProperty("INCORRECT_INPUT"));
+            throw new IncorrectInputException(messageReader.getMessage(EXCEPTIONS_PROPERTIES, "INCORRECT_INPUT"));
         }
     }
 

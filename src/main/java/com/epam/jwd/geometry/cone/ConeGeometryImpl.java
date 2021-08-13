@@ -2,7 +2,6 @@ package com.epam.jwd.geometry.cone;
 
 import com.epam.jwd.exception.NoPlaneIntersection;
 import com.epam.jwd.entity.Cone;
-import com.epam.jwd.geometry.Geometry;
 import com.epam.jwd.reader.MessageReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,22 +18,20 @@ class ConeGeometryImpl implements ConeGeometry {
 
     @Override
     public double surfaceArea(Cone cone) {
-        double result = Geometry.sectorArea(
-                Geometry.hypotenuse(cone.getHeight(), cone.getBase().getRadius()),
-                Geometry.circumference(cone.getBase().getRadius())) + Geometry.circleArea(cone.getBase().getRadius());
 
         LOG.trace(messageReader.getMessage(CONE_GEOMETRY_PROPERTIES, "SURFACE_AREA"));
 
-        return result;
+        return sectorArea(
+                hypotenuse(cone.getHeight(), cone.getBase().getRadius()),
+                circumference(cone.getBase().getRadius())) + circleArea(cone.getBase().getRadius());
     }
 
     @Override
     public double volume(Cone cone) {
-        double result = Geometry.circleArea(cone.getBase().getRadius()) * cone.getHeight() / 3;
 
         LOG.trace(messageReader.getMessage(CONE_GEOMETRY_PROPERTIES, "VOLUME"));
 
-        return result;
+        return circleArea(cone.getBase().getRadius()) * cone.getHeight() / 3;
     }
 
     @Override
@@ -42,12 +39,10 @@ class ConeGeometryImpl implements ConeGeometry {
         try {
             planeIntersection(cone);
 
-            double result = Math.pow(cone.getBase().getCenter().getZ() + cone.getHeight(), 3)
-                    / (Math.pow(cone.getHeight(), 3) - Math.pow(cone.getBase().getCenter().getZ() + cone.getHeight(), 3));
-
             LOG.trace(messageReader.getMessage(CONE_GEOMETRY_PROPERTIES, "VOLUME_RATIO"));
 
-            return result;
+            return Math.pow(cone.getBase().getCenter().getZ() + cone.getHeight(), 3)
+                    / (Math.pow(cone.getHeight(), 3) - Math.pow(cone.getBase().getCenter().getZ() + cone.getHeight(), 3));
         } catch (NoPlaneIntersection e) {
             LOG.error(e.getMessage());
             return 0;

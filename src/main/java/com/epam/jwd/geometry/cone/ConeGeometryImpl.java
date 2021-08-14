@@ -49,6 +49,12 @@ class ConeGeometryImpl implements ConeGeometry {
         }
     }
 
+    @Override
+    public double distanceFromTheCenterOfCoordinates(Cone cone) {
+        return distanceBetweenPoints(0, 0, 0,
+                cone.getXOfCenterBase(), cone.getYOfCenterBase(), cone.getZOfCenterBase());
+    }
+
     private void planeIntersection(Cone cone) throws NoPlaneIntersection {
         if (cone.getZOfCenterBase() >= 0) {
             throw new NoPlaneIntersection(messageReader.getMessage(EXCEPTIONS_PROPERTIES, "NO_PLANE_INTERSECTION"));

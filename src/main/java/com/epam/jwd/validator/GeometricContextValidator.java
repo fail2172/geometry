@@ -1,5 +1,6 @@
 package com.epam.jwd.validator;
 
+import com.epam.jwd.reader.MessageReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class GeometricContextValidator implements Validator {
 
-    private final static Logger LOG = LogManager.getLogger(GeometricContextValidator.class);
+    private final static MessageReader messageReader = MessageReader.instance();
     private static final String REGULAR_EXPRESSION_PROPERTIES = "src/main/resources/regular_expression.properties";
 
     GeometricContextValidator() {
@@ -19,14 +20,8 @@ public class GeometricContextValidator implements Validator {
 
     @Override
     public boolean checkContext(String stringContext) {
-        Properties properties = new Properties();
-        try (FileInputStream stream = new FileInputStream(REGULAR_EXPRESSION_PROPERTIES)) {
-            properties.load(stream);
-        } catch (IOException e) {
-            LOG.error(e.getMessage());
-        }
-
-        Pattern pattern = Pattern.compile(properties.getProperty("coneContextFormat"), Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile(messageReader
+                .getMessage(REGULAR_EXPRESSION_PROPERTIES, "CONE_CONTEXT_FORMAT"), Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(stringContext);
 
         return matcher.matches();

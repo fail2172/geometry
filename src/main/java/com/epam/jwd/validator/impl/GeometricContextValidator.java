@@ -10,7 +10,7 @@ public class GeometricContextValidator implements Validator {
 
     private static GeometricContextValidator instance;
 
-    private final static MessageReader messageReader = MessageReader.instance();
+    private final static MessageReader messageReader = MessageReader.getInstance();
     private static final String REGULAR_EXPRESSION_PROPERTIES = "src/main/resources/regular_expression.properties";
 
     GeometricContextValidator() {

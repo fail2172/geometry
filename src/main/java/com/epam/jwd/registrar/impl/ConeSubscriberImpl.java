@@ -1,14 +1,14 @@
 package com.epam.jwd.registrar.impl;
 
-import com.epam.jwd.entity.Cone;
-import com.epam.jwd.geometry.cone.ConeGeometry;
+import com.epam.jwd.entity.impl.Cone;
+import com.epam.jwd.geometry.ConeGeometry;
 import com.epam.jwd.registrar.ConeSubscriber;
 
 public class ConeSubscriberImpl implements ConeSubscriber {
 
     private static ConeSubscriberImpl instance;
 
-    private final static ConeGeometry geometry = ConeGeometry.instance();
+    private final static ConeGeometry geometry = ConeGeometry.getInstance();
     private Double height;
     private Double radius;
     private Double volume;

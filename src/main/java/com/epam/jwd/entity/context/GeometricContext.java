@@ -7,7 +7,7 @@ import com.epam.jwd.validator.Validator;
 
 public class GeometricContext {
     private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
-    private final static MessageReader messageReader = MessageReader.instance();
+    private final static MessageReader messageReader = MessageReader.getInstance();
     private final GeometricObjectType type;
 
     private final double x;

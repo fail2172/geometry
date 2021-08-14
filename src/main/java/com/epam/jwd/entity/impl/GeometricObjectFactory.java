@@ -1,5 +1,6 @@
-package com.epam.jwd.entity;
+package com.epam.jwd.entity.impl;
 
+import com.epam.jwd.entity.*;
 import com.epam.jwd.entity.context.GeometricContext;
 import com.epam.jwd.exception.NotFoundGeometricObjectException;
 import com.epam.jwd.reader.MessageReader;
@@ -10,7 +11,7 @@ public final class GeometricObjectFactory implements GeometricFactory {
 
     private static GeometricObjectFactory instance;
 
-    private final static MessageReader messageReader = MessageReader.instance();
+    private final static MessageReader messageReader = MessageReader.getInstance();
     private final static Logger LOG = LogManager.getLogger(GeometricObjectFactory.class);
     private static final String CREATION_PROPERTIES = "src/main/resources/creation.properties";
     private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
@@ -19,7 +20,8 @@ public final class GeometricObjectFactory implements GeometricFactory {
     }
 
     @Override
-    public GeometricObject createObject(GeometricContext context) throws NotFoundGeometricObjectException {
+    public GeometricObject createObject(GeometricContext context) throws NotFoundGeometricObjectException,
+            NullPointerException {
 
         switch (context.getType()) {
             case POINT:
@@ -38,7 +40,7 @@ public final class GeometricObjectFactory implements GeometricFactory {
         }
     }
 
-    static GeometricObjectFactory getInstance() {
+    public static GeometricObjectFactory getInstance() {
         if (instance == null) {
             instance = new GeometricObjectFactory();
         }

@@ -1,6 +1,7 @@
 package com.epam.jwd.entity;
 
 import com.epam.jwd.entity.context.GeometricContext;
+import com.epam.jwd.entity.impl.GeometricObjectFactory;
 import com.epam.jwd.exception.NotFoundGeometricObjectException;
 
 public interface GeometricFactory {

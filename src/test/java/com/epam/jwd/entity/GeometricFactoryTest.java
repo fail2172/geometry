@@ -23,8 +23,9 @@ public class GeometricFactoryTest {
         Assert.assertNotNull(factory.createObject(context));
     }
 
-    @Test(expectedExceptions = IncorrectInputException.class)
+    @Test(expectedExceptions = NullPointerException.class)
     public void test_shouldReturnNotFoundGeometricObjectException() throws NotFoundGeometricObjectException {
-        factory.createObject(null);
+        GeometricContext context = GeometricContext.of(null,0,0,0).build();
+        factory.createObject(context);
     }
 }

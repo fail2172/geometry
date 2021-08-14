@@ -1,6 +1,6 @@
 package com.epam.jwd.geometry.impl;
 
-import com.epam.jwd.exception.NoPlaneIntersection;
+import com.epam.jwd.exception.NoPlaneIntersectionException;
 import com.epam.jwd.entity.impl.Cone;
 import com.epam.jwd.geometry.ConeGeometry;
 import com.epam.jwd.reader.MessageReader;
@@ -51,7 +51,7 @@ public class ConeGeometryImpl implements ConeGeometry {
 
             return Math.pow(cone.getZOfCenterBase() + cone.getHeight(), 3)
                     / (Math.pow(cone.getHeight(), 3) - Math.pow(cone.getZOfCenterBase() + cone.getHeight(), 3));
-        } catch (NoPlaneIntersection e) {
+        } catch (NoPlaneIntersectionException e) {
             LOG.error(e);
             return 0;
         }
@@ -63,9 +63,9 @@ public class ConeGeometryImpl implements ConeGeometry {
                 cone.getXOfCenterBase(), cone.getYOfCenterBase(), cone.getZOfCenterBase());
     }
 
-    private void planeIntersection(Cone cone) throws NoPlaneIntersection {
+    private void planeIntersection(Cone cone) throws NoPlaneIntersectionException {
         if (cone.getZOfCenterBase() >= 0) {
-            throw new NoPlaneIntersection(messageReader.getMessage(EXCEPTIONS_PROPERTIES, "NO_PLANE_INTERSECTION"));
+            throw new NoPlaneIntersectionException(messageReader.getMessage(EXCEPTIONS_PROPERTIES, "NO_PLANE_INTERSECTION"));
         }
     }
 

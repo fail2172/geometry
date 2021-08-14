@@ -1,6 +1,6 @@
 package com.epam.jwd.repo;
 
-import com.epam.jwd.entity.Cone;
+import com.epam.jwd.entity.impl.Cone;
 import com.epam.jwd.entity.context.GeometricContext;
 import com.epam.jwd.exception.NotFoundGeometricObjectException;
 

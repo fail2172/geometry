@@ -1,6 +1,6 @@
 package com.epam.jwd.repo.impl;
 
-import com.epam.jwd.entity.Cone;
+import com.epam.jwd.entity.impl.Cone;
 import com.epam.jwd.entity.context.GeometricContext;
 import com.epam.jwd.exception.NotFoundGeometricObjectException;
 import com.epam.jwd.reader.MessageReader;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ConeRepositoryImpl implements ConeRepository {
 
-    private final static MessageReader messageReader = MessageReader.instance();
+    private final static MessageReader messageReader = MessageReader.getInstance();
     private final static String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
 
     private static ConeRepositoryImpl instance;

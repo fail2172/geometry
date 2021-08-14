@@ -1,5 +1,6 @@
-package com.epam.jwd.entity;
+package com.epam.jwd.entity.impl;
 
+import com.epam.jwd.entity.GeometricObject;
 import com.epam.jwd.registrar.CustomPublisher;
 import com.epam.jwd.registrar.ConeSubscriber;
 

@@ -1,6 +1,6 @@
 package com.epam.jwd.repo.impl;
 
-import com.epam.jwd.entity.Cone;
+import com.epam.jwd.entity.impl.Cone;
 import com.epam.jwd.repo.ConeSpecification;
 
 public class ConeSpecificationsByRadius implements ConeSpecification {

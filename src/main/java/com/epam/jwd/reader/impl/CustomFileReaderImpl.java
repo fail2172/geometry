@@ -1,10 +1,11 @@
-package com.epam.jwd.reader;
+package com.epam.jwd.reader.impl;
 
 import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.entity.GeometricFactory;
 import com.epam.jwd.entity.GeometricObject;
 import com.epam.jwd.entity.context.GeometricContext;
 import com.epam.jwd.exception.NotFoundGeometricObjectException;
+import com.epam.jwd.reader.CustomFileReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,8 +20,16 @@ import java.util.Scanner;
 public class CustomFileReaderImpl implements CustomFileReader {
 
     private static final Logger LOG = LogManager.getLogger(CustomFileReaderImpl.class);
+    private static CustomFileReaderImpl instance;
 
     CustomFileReaderImpl() {
+    }
+
+    public static CustomFileReaderImpl getInstance() {
+        if (instance == null) {
+            instance = new CustomFileReaderImpl();
+        }
+        return instance;
     }
 
     @Override

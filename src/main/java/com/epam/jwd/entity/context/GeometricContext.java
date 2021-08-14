@@ -96,7 +96,7 @@ public class GeometricContext {
     }
 
     public static GeometricContext stringToContext(String stringContext) throws IncorrectInputException {
-        Validator validator = Validator.instance();
+        Validator validator = Validator.getInstance();
 
         if (validator.checkContext(stringContext)) {
             final String SEMICOLON_SEPARATOR = ";";

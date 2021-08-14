@@ -1,7 +1,8 @@
-package com.epam.jwd.registrar;
+package com.epam.jwd.registrar.impl;
 
 import com.epam.jwd.entity.Cone;
 import com.epam.jwd.geometry.cone.ConeGeometry;
+import com.epam.jwd.registrar.ConeSubscriber;
 
 public class ConeSubscriberImpl implements ConeSubscriber {
 
@@ -24,14 +25,14 @@ public class ConeSubscriberImpl implements ConeSubscriber {
 
     }
 
-    static ConeSubscriberImpl getInstance(Cone cone) {
+    public static ConeSubscriberImpl getInstance(Cone cone) {
         if (instance == null) {
             instance = new ConeSubscriberImpl(cone);
         }
         return instance;
     }
 
-    static ConeSubscriberImpl getInstance() {
+    public static ConeSubscriberImpl getInstance() {
         if (instance == null) {
             instance = new ConeSubscriberImpl();
         }

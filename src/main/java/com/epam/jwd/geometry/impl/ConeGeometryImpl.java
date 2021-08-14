@@ -1,19 +1,27 @@
-package com.epam.jwd.geometry.cone;
+package com.epam.jwd.geometry.impl;
 
 import com.epam.jwd.exception.NoPlaneIntersection;
-import com.epam.jwd.entity.Cone;
+import com.epam.jwd.entity.impl.Cone;
+import com.epam.jwd.geometry.ConeGeometry;
 import com.epam.jwd.reader.MessageReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-class ConeGeometryImpl implements ConeGeometry {
+public class ConeGeometryImpl implements ConeGeometry {
     private final static Logger LOG = LogManager.getLogger(ConeGeometryImpl.class);
-    private static final MessageReader messageReader = MessageReader.instance();
+    private static final MessageReader messageReader = MessageReader.getInstance();
     private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
     private static final String CONE_GEOMETRY_PROPERTIES = "src/main/resources/cone_geometry.properties";
+    private static ConeGeometryImpl instance;
 
     ConeGeometryImpl() {
+    }
 
+    public static ConeGeometryImpl getInstance() {
+        if (instance == null) {
+            instance = new ConeGeometryImpl();
+        }
+        return instance;
     }
 
     @Override

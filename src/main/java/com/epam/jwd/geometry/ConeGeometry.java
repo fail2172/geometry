@@ -1,7 +1,7 @@
-package com.epam.jwd.geometry.cone;
+package com.epam.jwd.geometry;
 
-import com.epam.jwd.entity.Cone;
-import com.epam.jwd.geometry.Geometry;
+import com.epam.jwd.entity.impl.Cone;
+import com.epam.jwd.geometry.impl.ConeGeometryImpl;
 
 public interface ConeGeometry extends Geometry {
     double surfaceArea(Cone cone);
@@ -14,7 +14,7 @@ public interface ConeGeometry extends Geometry {
     boolean isCone(Object object);
     boolean baseOnTheCoordinatePlane(Cone cone);
 
-    static ConeGeometry instance() {
-        return new ConeGeometryImpl();
+    static ConeGeometry getInstance() {
+        return ConeGeometryImpl.getInstance();
     }
 }

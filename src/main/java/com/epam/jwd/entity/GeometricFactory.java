@@ -7,6 +7,6 @@ public interface GeometricFactory {
     GeometricObject createObject(GeometricContext context) throws NotFoundGeometricObjectException;
 
     static GeometricFactory instance(){
-        return new GeometricObjectFactory();
+        return GeometricObjectFactory.getInstance();
     }
 }

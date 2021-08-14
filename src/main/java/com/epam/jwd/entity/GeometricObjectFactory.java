@@ -6,20 +6,22 @@ import com.epam.jwd.reader.MessageReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public final class GeometricObjectFactory implements GeometricFactory{
+public final class GeometricObjectFactory implements GeometricFactory {
+
+    private static GeometricObjectFactory instance;
 
     private final static MessageReader messageReader = MessageReader.instance();
     private final static Logger LOG = LogManager.getLogger(GeometricObjectFactory.class);
     private static final String CREATION_PROPERTIES = "src/main/resources/creation.properties";
     private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
 
-    GeometricObjectFactory(){
+    GeometricObjectFactory() {
     }
 
     @Override
     public GeometricObject createObject(GeometricContext context) throws NotFoundGeometricObjectException {
 
-        switch (context.getType()){
+        switch (context.getType()) {
             case POINT:
                 LOG.trace(messageReader.getMessage(CREATION_PROPERTIES, "POINT"));
                 return new CustomPoint(context.getX(), context.getY(), context.getZ());
@@ -34,5 +36,12 @@ public final class GeometricObjectFactory implements GeometricFactory{
                 throw new NotFoundGeometricObjectException(messageReader
                         .getMessage(EXCEPTIONS_PROPERTIES, "NOT_FOUND_GEOMETRIC_OBJECT"));
         }
+    }
+
+    static GeometricObjectFactory getInstance() {
+        if (instance == null) {
+            instance = new GeometricObjectFactory();
+        }
+        return instance;
     }
 }

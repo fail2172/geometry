@@ -1,6 +1,7 @@
 package com.epam.jwd.entity;
 
 import com.epam.jwd.entity.context.GeometricContext;
+import com.epam.jwd.exception.NotFoundGeometricObjectException;
 import com.epam.jwd.reader.MessageReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,12 +11,13 @@ public final class GeometricObjectFactory implements GeometricFactory{
     private final static MessageReader messageReader = MessageReader.instance();
     private final static Logger LOG = LogManager.getLogger(GeometricObjectFactory.class);
     private static final String CREATION_PROPERTIES = "src/main/resources/creation.properties";
+    private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
 
     GeometricObjectFactory(){
     }
 
     @Override
-    public GeometricObject createObject(GeometricContext context) {
+    public GeometricObject createObject(GeometricContext context) throws NotFoundGeometricObjectException {
 
         switch (context.getType()){
             case POINT:
@@ -29,7 +31,8 @@ public final class GeometricObjectFactory implements GeometricFactory{
                 return new Cone(context.getX(), context.getY(), context.getZ(),
                         context.getHeight(), context.getRadius());
             default:
-                return null;
+                throw new NotFoundGeometricObjectException(messageReader
+                        .getMessage(EXCEPTIONS_PROPERTIES, "NOT_FOUND_GEOMETRIC_OBJECT"));
         }
     }
 }

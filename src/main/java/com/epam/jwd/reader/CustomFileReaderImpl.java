@@ -4,6 +4,7 @@ import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.entity.GeometricFactory;
 import com.epam.jwd.entity.GeometricObject;
 import com.epam.jwd.entity.context.GeometricContext;
+import com.epam.jwd.exception.NotFoundGeometricObjectException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,7 +39,9 @@ public class CustomFileReaderImpl implements CustomFileReader {
                     GeometricContext context = GeometricContext.stringToContext(geometricObjectContext);
                     geometricObjects.add(factory.createObject(context));
                 } catch (IncorrectInputException e) {
-                    LOG.error(e.getMessage() + String.format(" : line %s", lineNum));
+                    LOG.error(e + String.format(" : line %s", lineNum));
+                } catch (NotFoundGeometricObjectException e) {
+                    LOG.error(e);
                 }
             }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Cone implements GeometricObject, CustomPublisher {
 
-    private Circle base;
+    private final Circle base;
     private Double height;
     private final List<ConeSubscriber> coneSubscribers;
 

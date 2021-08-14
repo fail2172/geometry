@@ -44,7 +44,7 @@ class ConeGeometryImpl implements ConeGeometry {
             return Math.pow(cone.getZOfCenterBase() + cone.getHeight(), 3)
                     / (Math.pow(cone.getHeight(), 3) - Math.pow(cone.getZOfCenterBase() + cone.getHeight(), 3));
         } catch (NoPlaneIntersection e) {
-            LOG.error(e.getMessage());
+            LOG.error(e);
             return 0;
         }
     }

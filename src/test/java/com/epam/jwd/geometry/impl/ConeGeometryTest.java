@@ -1,7 +1,6 @@
 package com.epam.jwd.geometry.impl;
 
 import com.epam.jwd.geometry.ConeGeometry;
-import com.epam.jwd.geometry.impl.ConeGeometryImpl;
 import com.epam.jwd.reader.CustomFileReader;
 import com.epam.jwd.entity.impl.Cone;
 import com.epam.jwd.entity.GeometricObject;
@@ -66,5 +65,11 @@ public class ConeGeometryTest {
     @Test(dataProvider = "Data-Provider")
     public void test_returnsVolumeRatio(Cone cone, Double[] expected) {
         Assert.assertEquals(expected[2], geometry.volumeRatio(cone), DELTA);
+    }
+
+    @Test
+    public void test_CheckForSingleton() {
+        ConeGeometry otherGeometry = ConeGeometryImpl.getInstance();
+        Assert.assertSame(geometry, otherGeometry);
     }
 }

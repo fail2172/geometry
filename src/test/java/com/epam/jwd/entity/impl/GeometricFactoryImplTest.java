@@ -14,19 +14,25 @@ public class GeometricFactoryImplTest {
     @Test
     public void test_ReturnsAllKindsOfGeometricObjects() throws NotFoundGeometricObjectException {
         GeometricContext context =
-                GeometricContext.of(GeometricObjectType.CONE, 0,0,0).setRadius(5.0).setHeight(10.0).build();
+                GeometricContext.of(GeometricObjectType.CONE, 0, 0, 0).setRadius(5.0).setHeight(10.0).build();
         Assert.assertNotNull(factory.createObject(context));
 
-        context = GeometricContext.of(GeometricObjectType.CIRCLE, 0,0,0).setRadius(5.0).build();
+        context = GeometricContext.of(GeometricObjectType.CIRCLE, 0, 0, 0).setRadius(5.0).build();
         Assert.assertNotNull(factory.createObject(context));
 
-        context = GeometricContext.of(GeometricObjectType.CIRCLE, 0,0,0).build();
+        context = GeometricContext.of(GeometricObjectType.CIRCLE, 0, 0, 0).build();
         Assert.assertNotNull(factory.createObject(context));
     }
 
     @Test(expectedExceptions = NullPointerException.class)
     public void test_shouldReturnNotFoundGeometricObjectException() throws NotFoundGeometricObjectException {
-        GeometricContext context = GeometricContext.of(null,0,0,0).build();
+        GeometricContext context = GeometricContext.of(null, 0, 0, 0).build();
         factory.createObject(context);
+    }
+
+    @Test
+    public void test_CheckForSingleton() {
+        GeometricFactory otherFactory = GeometricFactoryImpl.getInstance();
+        Assert.assertSame(factory, otherFactory);
     }
 }

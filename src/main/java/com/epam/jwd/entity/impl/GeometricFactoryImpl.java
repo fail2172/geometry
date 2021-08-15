@@ -12,10 +12,10 @@ public final class GeometricFactoryImpl implements GeometricFactory {
 
     private static GeometricFactoryImpl instance;
 
-    private final static MessageReader messageReader = MessageReaderImpl.getInstance();
+    public final static MessageReader messageReader = MessageReaderImpl.getInstance();
     private final static Logger LOG = LogManager.getLogger(GeometricFactoryImpl.class);
-    private static final String CREATION_PROPERTIES = "src/main/resources/creation.properties";
-    private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
+    private final static String CREATION_PROPERTIES = "src/main/resources/creation.properties";
+    private final static String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
 
     GeometricFactoryImpl() {
     }
@@ -28,8 +28,7 @@ public final class GeometricFactoryImpl implements GeometricFactory {
     }
 
     @Override
-    public GeometricObject createObject(GeometricContext context) throws NotFoundGeometricObjectException,
-            NullPointerException {
+    public GeometricObject createObject(GeometricContext context) throws NotFoundGeometricObjectException {
 
         switch (context.getType()) {
             case POINT:

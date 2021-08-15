@@ -29,4 +29,10 @@ public class CustomFileReaderTest {
     public void test_shouldGenerateNullPointerException() throws IOException {
         fileReader.readFile(null);
     }
+
+    @Test
+    public void test_CheckForSingleton() {
+        CustomFileReader otherFileReader = CustomFileReaderImpl.getInstance();
+        Assert.assertSame(fileReader, otherFileReader);
+    }
 }

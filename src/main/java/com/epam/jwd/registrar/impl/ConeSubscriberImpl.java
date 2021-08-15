@@ -7,37 +7,21 @@ import com.epam.jwd.registrar.ConeSubscriber;
 
 public class ConeSubscriberImpl implements ConeSubscriber {
 
-    private static ConeSubscriberImpl instance;
-
     private final static ConeGeometry geometry = ConeGeometryImpl.getInstance();
     private Double height;
     private Double radius;
     private Double volume;
     private Double surfaceArea;
 
-    ConeSubscriberImpl(Cone cone) {
+    public ConeSubscriberImpl(Cone cone) {
         height = cone.getHeight();
         radius = cone.getRadius();
         volume = geometry.volume(cone);
         surfaceArea = geometry.surfaceArea(cone);
     }
 
-    ConeSubscriberImpl() {
+    public ConeSubscriberImpl() {
 
-    }
-
-    public static ConeSubscriberImpl getInstance(Cone cone) {
-        if (instance == null) {
-            instance = new ConeSubscriberImpl(cone);
-        }
-        return instance;
-    }
-
-    public static ConeSubscriberImpl getInstance() {
-        if (instance == null) {
-            instance = new ConeSubscriberImpl();
-        }
-        return instance;
     }
 
     @Override

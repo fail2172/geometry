@@ -1,13 +1,15 @@
 package com.epam.jwd.entity.impl;
 
 import com.epam.jwd.entity.GeometricObject;
+import com.epam.jwd.geometry.ConeGeometry;
+import com.epam.jwd.geometry.impl.ConeGeometryImpl;
 import com.epam.jwd.registrar.CustomPublisher;
 import com.epam.jwd.registrar.ConeSubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cone implements GeometricObject, CustomPublisher {
+public class Cone implements GeometricObject, CustomPublisher, Comparable<Cone> {
 
     private final Circle base;
     private Double height;
@@ -95,5 +97,11 @@ public class Cone implements GeometricObject, CustomPublisher {
         ) {
             coneSubscriber.update(this);
         }
+    }
+
+    @Override
+    public int compareTo(Cone o) {
+        ConeGeometry geometry = ConeGeometryImpl.getInstance();
+        return (int) (geometry.volume(this) - geometry.volume(o));
     }
 }

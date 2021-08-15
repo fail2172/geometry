@@ -7,5 +7,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface CustomFileReader {
-    List<GeometricObject> readFile(File file) throws IOException;
+    List<GeometricObject> readFile(File file) throws IOException, NullPointerException;
 }

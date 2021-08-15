@@ -1,13 +1,13 @@
-package com.epam.jwd.entity;
+package com.epam.jwd.entity.impl;
 
+import com.epam.jwd.entity.GeometricFactory;
+import com.epam.jwd.entity.GeometricObjectType;
 import com.epam.jwd.entity.context.GeometricContext;
-import com.epam.jwd.entity.impl.GeometricFactoryImpl;
-import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.exception.NotFoundGeometricObjectException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GeometricFactoryTest {
+public class GeometricFactoryImplTest {
 
     private final GeometricFactory factory = GeometricFactoryImpl.getInstance();
 

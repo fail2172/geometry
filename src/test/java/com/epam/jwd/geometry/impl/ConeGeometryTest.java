@@ -1,6 +1,7 @@
 package com.epam.jwd.geometry.impl;
 
 import com.epam.jwd.geometry.ConeGeometry;
+import com.epam.jwd.geometry.impl.ConeGeometryImpl;
 import com.epam.jwd.reader.CustomFileReader;
 import com.epam.jwd.entity.impl.Cone;
 import com.epam.jwd.entity.GeometricObject;

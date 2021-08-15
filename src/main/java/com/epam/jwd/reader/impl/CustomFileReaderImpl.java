@@ -34,7 +34,7 @@ public class CustomFileReaderImpl implements CustomFileReader {
     }
 
     @Override
-    public List<GeometricObject> readFile(File file) throws IOException {
+    public List<GeometricObject> readFile(File file) throws IOException, NullPointerException {
         List<GeometricObject> geometricObjects = new ArrayList<>();
 
         try (FileReader fileReader = new FileReader(file)) {
@@ -54,11 +54,7 @@ public class CustomFileReaderImpl implements CustomFileReader {
                     LOG.error(e);
                 }
             }
-
-        } catch (FileNotFoundException e) {
-            LOG.error(e.getMessage());
         }
-
         return geometricObjects;
     }
 }

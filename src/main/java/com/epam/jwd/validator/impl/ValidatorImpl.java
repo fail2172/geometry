@@ -7,19 +7,19 @@ import com.epam.jwd.validator.Validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class GeometricContextValidator implements Validator {
+public class ValidatorImpl implements Validator {
 
-    private static GeometricContextValidator instance;
+    private static ValidatorImpl instance;
 
     private final static MessageReader messageReader = MessageReaderImpl.getInstance();
     private static final String REGULAR_EXPRESSION_PROPERTIES = "src/main/resources/regular_expression.properties";
 
-    GeometricContextValidator() {
+    ValidatorImpl() {
     }
 
-    public static GeometricContextValidator getInstance() {
+    public static ValidatorImpl getInstance() {
         if (instance == null) {
-            instance = new GeometricContextValidator();
+            instance = new ValidatorImpl();
         }
         return instance;
     }

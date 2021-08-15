@@ -5,7 +5,7 @@ import com.epam.jwd.entity.GeometricObjectType;
 import com.epam.jwd.reader.MessageReader;
 import com.epam.jwd.reader.impl.MessageReaderImpl;
 import com.epam.jwd.validator.Validator;
-import com.epam.jwd.validator.impl.GeometricContextValidator;
+import com.epam.jwd.validator.impl.ValidatorImpl;
 
 public class GeometricContext {
     private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
@@ -98,7 +98,7 @@ public class GeometricContext {
     }
 
     public static GeometricContext stringToContext(String stringContext) throws IncorrectInputException {
-        Validator validator = GeometricContextValidator.getInstance();
+        Validator validator = ValidatorImpl.getInstance();
 
         if (validator.checkContext(stringContext)) {
             final String SEMICOLON_SEPARATOR = ";";

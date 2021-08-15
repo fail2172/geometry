@@ -4,12 +4,13 @@ import com.epam.jwd.exception.NoPlaneIntersectionException;
 import com.epam.jwd.entity.impl.Cone;
 import com.epam.jwd.geometry.ConeGeometry;
 import com.epam.jwd.reader.MessageReader;
+import com.epam.jwd.reader.impl.MessageReaderImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ConeGeometryImpl implements ConeGeometry {
     private final static Logger LOG = LogManager.getLogger(ConeGeometryImpl.class);
-    private static final MessageReader messageReader = MessageReader.getInstance();
+    private static final MessageReader messageReader = MessageReaderImpl.getInstance();
     private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
     private static final String CONE_GEOMETRY_PROPERTIES = "src/main/resources/cone_geometry.properties";
     private static ConeGeometryImpl instance;

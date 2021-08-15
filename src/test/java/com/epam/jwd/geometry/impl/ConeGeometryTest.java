@@ -4,6 +4,7 @@ import com.epam.jwd.geometry.ConeGeometry;
 import com.epam.jwd.reader.CustomFileReader;
 import com.epam.jwd.entity.impl.Cone;
 import com.epam.jwd.entity.GeometricObject;
+import com.epam.jwd.reader.impl.CustomFileReaderImpl;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -16,12 +17,12 @@ public class ConeGeometryTest {
     private static final String TEST_CONE_TXT = "src/test/resources/test_cone.txt";
     private static final int CONES_NUM = 5;
     private static final double DELTA = 0.001;
-    private final ConeGeometry geometry = ConeGeometry.getInstance();
+    private final ConeGeometry geometry = ConeGeometryImpl.getInstance();
     private List<GeometricObject> cones;
 
     @BeforeTest
     public void initialization() throws Exception {
-        CustomFileReader fileReader = CustomFileReader.getInstance();
+        CustomFileReader fileReader = CustomFileReaderImpl.getInstance();
         cones = fileReader.readFile(new File(TEST_CONE_TXT));
     }
 

@@ -1,6 +1,7 @@
 package com.epam.jwd.validator.impl;
 
 import com.epam.jwd.reader.MessageReader;
+import com.epam.jwd.reader.impl.MessageReaderImpl;
 import com.epam.jwd.validator.Validator;
 
 import java.util.regex.Matcher;
@@ -10,7 +11,7 @@ public class GeometricContextValidator implements Validator {
 
     private static GeometricContextValidator instance;
 
-    private final static MessageReader messageReader = MessageReader.getInstance();
+    private final static MessageReader messageReader = MessageReaderImpl.getInstance();
     private static final String REGULAR_EXPRESSION_PROPERTIES = "src/main/resources/regular_expression.properties";
 
     GeometricContextValidator() {

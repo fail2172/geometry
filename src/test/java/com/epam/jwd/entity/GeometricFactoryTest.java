@@ -1,6 +1,7 @@
 package com.epam.jwd.entity;
 
 import com.epam.jwd.entity.context.GeometricContext;
+import com.epam.jwd.entity.impl.GeometricFactoryImpl;
 import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.exception.NotFoundGeometricObjectException;
 import org.testng.Assert;
@@ -8,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class GeometricFactoryTest {
 
-    private final GeometricFactory factory = GeometricFactory.instance();
+    private final GeometricFactory factory = GeometricFactoryImpl.getInstance();
 
     @Test
     public void test_ReturnsAllKindsOfGeometricObjects() throws NotFoundGeometricObjectException {

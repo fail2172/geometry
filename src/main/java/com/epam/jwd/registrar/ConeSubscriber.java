@@ -6,11 +6,4 @@ import com.epam.jwd.registrar.impl.ConeSubscriberImpl;
 public interface ConeSubscriber {
 
     void update(Cone cone);
-
-    static ConeSubscriber getInstance(Cone cone){
-        return ConeSubscriberImpl.getInstance(cone);
-    }
-    static ConeSubscriber getInstance(){
-        return ConeSubscriberImpl.getInstance();
-    }
 }

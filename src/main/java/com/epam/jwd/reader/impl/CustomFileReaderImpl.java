@@ -1,5 +1,6 @@
 package com.epam.jwd.reader.impl;
 
+import com.epam.jwd.entity.impl.GeometricFactoryImpl;
 import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.entity.GeometricFactory;
 import com.epam.jwd.entity.GeometricObject;
@@ -38,7 +39,7 @@ public class CustomFileReaderImpl implements CustomFileReader {
 
         try (FileReader fileReader = new FileReader(file)) {
             Scanner scanner = new Scanner(fileReader);
-            GeometricFactory factory = GeometricFactory.instance();
+            GeometricFactory factory = GeometricFactoryImpl.getInstance();
             int lineNum = 0;
 
             while (scanner.hasNextLine()) {

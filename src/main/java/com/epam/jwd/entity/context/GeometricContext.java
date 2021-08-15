@@ -3,11 +3,13 @@ package com.epam.jwd.entity.context;
 import com.epam.jwd.exception.IncorrectInputException;
 import com.epam.jwd.entity.GeometricObjectType;
 import com.epam.jwd.reader.MessageReader;
+import com.epam.jwd.reader.impl.MessageReaderImpl;
 import com.epam.jwd.validator.Validator;
+import com.epam.jwd.validator.impl.GeometricContextValidator;
 
 public class GeometricContext {
     private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
-    private final static MessageReader messageReader = MessageReader.getInstance();
+    private final static MessageReader messageReader = MessageReaderImpl.getInstance();
     private final GeometricObjectType type;
 
     private final double x;
@@ -96,7 +98,7 @@ public class GeometricContext {
     }
 
     public static GeometricContext stringToContext(String stringContext) throws IncorrectInputException {
-        Validator validator = Validator.getInstance();
+        Validator validator = GeometricContextValidator.getInstance();
 
         if (validator.checkContext(stringContext)) {
             final String SEMICOLON_SEPARATOR = ";";

@@ -9,6 +9,8 @@ import com.epam.jwd.repo.ConeRepository;
 import com.epam.jwd.repo.ConeSpecification;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ConeRepositoryImpl implements ConeRepository {
@@ -59,6 +61,21 @@ public class ConeRepositoryImpl implements ConeRepository {
             throw new NotFoundGeometricObjectException(messageReader.
                     getMessage(EXCEPTIONS_PROPERTIES,"NOT_FOUND_GEOMETRIC_OBJECT"), e);
         }
+    }
+
+    @Override
+    public int size() {
+        return cones.size();
+    }
+
+    @Override
+    public void sort(Comparator<Cone> comparator) {
+        cones.sort(comparator);
+    }
+
+    @Override
+    public void sort() {
+        Collections.sort(cones);
     }
 
     @Override

@@ -11,8 +11,8 @@ import java.util.List;
 
 public class CustomFileReaderTest {
 
-    public static final CustomFileReader fileReader = CustomFileReaderImpl.getInstance();
-    public static final String TEST_CONE_TXT = "src/test/resources/test_cone.txt";
+    private static final CustomFileReader fileReader = CustomFileReaderImpl.getInstance();
+    private static final String TEST_CONE_TXT = "src/test/resources/test_cone.txt";
 
     @Test
     public void test_shouldReturnListOfGeometricObjects() throws IOException {

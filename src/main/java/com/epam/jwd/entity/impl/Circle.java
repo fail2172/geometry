@@ -1,6 +1,7 @@
 package com.epam.jwd.entity.impl;
 
 import com.epam.jwd.entity.GeometricObject;
+import com.epam.jwd.entity.context.GeometricContext;
 
 public class Circle implements GeometricObject {
 
@@ -31,6 +32,12 @@ public class Circle implements GeometricObject {
     }
 
     @Override
+    public void setContext(GeometricContext context) {
+        this.setRadius(context.getRadius());
+        this.setCenter(context.getX(), context.getY(), context.getZ());
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -54,5 +61,10 @@ public class Circle implements GeometricObject {
                 "center=" + center +
                 ", radius=" + radius +
                 '}';
+    }
+
+    @Override
+    public int compareTo(GeometricObject o) {
+        return (int) (this.radius - ((Circle) o).getRadius());
     }
 }

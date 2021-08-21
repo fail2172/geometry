@@ -3,14 +3,14 @@ package com.epam.jwd.repo.impl;
 import com.epam.jwd.entity.impl.Cone;
 import com.epam.jwd.geometry.ConeGeometry;
 import com.epam.jwd.geometry.impl.ConeGeometryImpl;
-import com.epam.jwd.repo.ConeSpecification;
+import com.epam.jwd.repo.Specification;
 
-public class ConeSpecificationsBySurfaceArea implements ConeSpecification {
+public class SpecificationsBySurfaceArea implements Specification<Cone> {
     private final static ConeGeometry geometry = ConeGeometryImpl.getInstance();
     private final double from;
     private final double to;
 
-    public ConeSpecificationsBySurfaceArea(double from, double to) {
+    public SpecificationsBySurfaceArea(double from, double to) {
         this.from = from;
         this.to = to;
     }

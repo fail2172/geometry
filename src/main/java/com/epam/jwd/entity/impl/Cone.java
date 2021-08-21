@@ -1,6 +1,7 @@
 package com.epam.jwd.entity.impl;
 
 import com.epam.jwd.entity.GeometricObject;
+import com.epam.jwd.entity.context.GeometricContext;
 import com.epam.jwd.geometry.ConeGeometry;
 import com.epam.jwd.geometry.impl.ConeGeometryImpl;
 import com.epam.jwd.registrar.CustomPublisher;
@@ -9,7 +10,7 @@ import com.epam.jwd.registrar.ConeSubscriber;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cone implements GeometricObject, CustomPublisher, Comparable<Cone> {
+public class Cone implements GeometricObject, CustomPublisher {
 
     private final Circle base;
     private Double height;
@@ -25,19 +26,19 @@ public class Cone implements GeometricObject, CustomPublisher, Comparable<Cone> 
         return height;
     }
 
-    public double getRadius(){
+    public double getRadius() {
         return base.getRadius();
     }
 
-    public double getXOfCenterBase(){
+    public double getXOfCenterBase() {
         return base.getCenter().getX();
     }
 
-    public double getYOfCenterBase(){
+    public double getYOfCenterBase() {
         return base.getCenter().getY();
     }
 
-    public double getZOfCenterBase(){
+    public double getZOfCenterBase() {
         return base.getCenter().getZ();
     }
 
@@ -53,6 +54,14 @@ public class Cone implements GeometricObject, CustomPublisher, Comparable<Cone> 
 
     public void setCenter(Double x, Double y, Double z) {
         base.setCenter(x, y, z);
+    }
+
+
+    @Override
+    public void setContext(GeometricContext context) {
+        this.setHeight(context.getHeight());
+        this.setRadius(context.getRadius());
+        this.setCenter(context.getX(), context.getY(), context.getZ());
     }
 
     @Override
@@ -100,8 +109,8 @@ public class Cone implements GeometricObject, CustomPublisher, Comparable<Cone> 
     }
 
     @Override
-    public int compareTo(Cone o) {
+    public int compareTo(GeometricObject o) {
         ConeGeometry geometry = ConeGeometryImpl.getInstance();
-        return (int) (geometry.volume(this) - geometry.volume(o));
+        return (int) (geometry.volume(this) - geometry.volume((Cone) o));
     }
 }

@@ -1,6 +1,7 @@
 package com.epam.jwd.entity.impl;
 
 import com.epam.jwd.entity.GeometricObject;
+import com.epam.jwd.entity.context.GeometricContext;
 
 public class CustomPoint implements GeometricObject {
 
@@ -39,6 +40,13 @@ public class CustomPoint implements GeometricObject {
     }
 
     @Override
+    public void setContext(GeometricContext context) {
+        this.setX(context.getX());
+        this.setY(context.getY());
+        this.setX(context.getZ());
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -70,5 +78,12 @@ public class CustomPoint implements GeometricObject {
                 ", y=" + y +
                 ", z=" + z +
                 '}';
+    }
+
+    @Override
+    public int compareTo(GeometricObject o) {
+        final CustomPoint point = (CustomPoint) o;
+        return (int) (Math.pow(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2), 0.5)
+                - Math.pow(Math.pow(point.getX(), 2) + Math.pow(point.getY(), 2) + Math.pow(point.getZ(), 2), 0.5));
     }
 }

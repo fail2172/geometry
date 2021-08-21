@@ -106,6 +106,7 @@ public class GeometricContext {
 
             String[] coneParameters = stringContext.split(SEMICOLON_SEPARATOR);
 
+
             double height = Double.parseDouble(coneParameters[0]);
             double radius = Double.parseDouble(coneParameters[1]);
 

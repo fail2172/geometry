@@ -1,8 +1,7 @@
 package com.epam.jwd.entity.impl;
 
 import com.epam.jwd.entity.*;
-import com.epam.jwd.entity.context.GeometricContext;
-import com.epam.jwd.exception.NotFoundGeometricObjectException;
+import com.epam.jwd.exception.GeometricObjectTypeNotFoundException;
 import com.epam.jwd.reader.MessageReader;
 import com.epam.jwd.reader.impl.MessageReaderImpl;
 import org.apache.logging.log4j.LogManager;
@@ -28,22 +27,21 @@ public final class GeometricFactoryImpl implements GeometricFactory {
     }
 
     @Override
-    public GeometricObject createObject(GeometricContext context) throws NotFoundGeometricObjectException {
-
+    public GeometricObject createObject(GeometricContext context) throws GeometricObjectTypeNotFoundException {
         switch (context.getType()) {
             case POINT:
-                LOG.trace(messageReader.getMessage(CREATION_PROPERTIES, "POINT"));
+                LOG.trace(messageReader.getMessage(CREATION_PROPERTIES, GeometricObjectType.CONE.getName()));
                 return new CustomPoint(context.getX(), context.getY(), context.getZ());
             case CIRCLE:
-                LOG.trace(messageReader.getMessage(CREATION_PROPERTIES, "CIRCLE"));
+                LOG.trace(messageReader.getMessage(CREATION_PROPERTIES, GeometricObjectType.CIRCLE.getName()));
                 return new Circle(context.getX(), context.getY(), context.getZ(), context.getRadius());
             case CONE:
-                LOG.trace(messageReader.getMessage(CREATION_PROPERTIES, "CONE"));
+                LOG.trace(messageReader.getMessage(CREATION_PROPERTIES, GeometricObjectType.POINT.getName()));
                 return new Cone(context.getX(), context.getY(), context.getZ(),
                         context.getHeight(), context.getRadius());
             default:
-                throw new NotFoundGeometricObjectException(messageReader
-                        .getMessage(EXCEPTIONS_PROPERTIES, "NOT_FOUND_GEOMETRIC_OBJECT"));
+                throw new GeometricObjectTypeNotFoundException(messageReader
+                        .getMessage(EXCEPTIONS_PROPERTIES, "NOT_FOUND_GEOMETRIC_OBJECT_TYPE"));
         }
     }
 }

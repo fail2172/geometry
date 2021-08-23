@@ -1,15 +1,7 @@
-package com.epam.jwd.entity.context;
-
-import com.epam.jwd.exception.IncorrectInputException;
-import com.epam.jwd.entity.GeometricObjectType;
-import com.epam.jwd.reader.MessageReader;
-import com.epam.jwd.reader.impl.MessageReaderImpl;
-import com.epam.jwd.validator.Validator;
-import com.epam.jwd.validator.impl.ValidatorImpl;
+package com.epam.jwd.entity.impl;
 
 public class GeometricContext {
-    private static final String EXCEPTIONS_PROPERTIES = "src/main/resources/exceptions.properties";
-    private final static MessageReader messageReader = MessageReaderImpl.getInstance();
+
     private final GeometricObjectType type;
 
     private final double x;
@@ -95,31 +87,6 @@ public class GeometricContext {
 
     public static Builder of(GeometricObjectType type, double x, double y, double z) {
         return new GeometricContext(type, x, y, z).new Builder();
-    }
-
-    public static GeometricContext stringToContext(String stringContext) throws IncorrectInputException {
-        Validator validator = ValidatorImpl.getInstance();
-
-        if (validator.checkContext(stringContext)) {
-            final String SEMICOLON_SEPARATOR = ";";
-            final String SPACE_SEPARATOR = ",";
-
-            String[] coneParameters = stringContext.split(SEMICOLON_SEPARATOR);
-
-
-            double height = Double.parseDouble(coneParameters[0]);
-            double radius = Double.parseDouble(coneParameters[1]);
-
-            String[] centerBaseCoordinates = coneParameters[2].split(SPACE_SEPARATOR);
-
-            double x = Double.parseDouble(centerBaseCoordinates[0]);
-            double y = Double.parseDouble(centerBaseCoordinates[1]);
-            double z = Double.parseDouble(centerBaseCoordinates[2]);
-
-            return GeometricContext.of(GeometricObjectType.CONE, x, y, z).setHeight(height).setRadius(radius).build();
-        } else {
-            throw new IncorrectInputException(messageReader.getMessage(EXCEPTIONS_PROPERTIES, "INCORRECT_INPUT"));
-        }
     }
 
     public class Builder {

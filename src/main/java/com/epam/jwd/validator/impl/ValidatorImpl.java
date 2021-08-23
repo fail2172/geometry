@@ -1,23 +1,22 @@
 package com.epam.jwd.validator.impl;
 
-import com.epam.jwd.reader.MessageReader;
-import com.epam.jwd.reader.impl.MessageReaderImpl;
+import com.epam.jwd.entity.impl.GeometricObjectType;
+import com.epam.jwd.validator.PatternFactory;
 import com.epam.jwd.validator.Validator;
 
+import java.io.FileNotFoundException;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class ValidatorImpl implements Validator {
 
+    private static PatternFactory patternFactory;
     private static ValidatorImpl instance;
 
-    private final static MessageReader messageReader = MessageReaderImpl.getInstance();
-    private static final String REGULAR_EXPRESSION_PROPERTIES = "src/main/resources/regular_expression.properties";
-
-    ValidatorImpl() {
+    ValidatorImpl() throws FileNotFoundException {
+        patternFactory = PatternFactoryImpl.getInstance();
     }
 
-    public static ValidatorImpl getInstance() {
+    public static ValidatorImpl getInstance() throws FileNotFoundException {
         if (instance == null) {
             instance = new ValidatorImpl();
         }
@@ -25,10 +24,8 @@ public class ValidatorImpl implements Validator {
     }
 
     @Override
-    public boolean checkContext(String stringContext) {
-        Pattern pattern = Pattern.compile(messageReader
-                .getMessage(REGULAR_EXPRESSION_PROPERTIES, "CONE_CONTEXT_FORMAT"), Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(stringContext);
+    public boolean checkContext(GeometricObjectType key, String stringContext) {
+        Matcher matcher = patternFactory.getPattern(key).matcher(stringContext);
 
         return matcher.matches();
     }

@@ -1,4 +1,7 @@
 package com.epam.jwd.entity;
 
-public interface GeometricObject {
+import com.epam.jwd.entity.impl.GeometricContext;
+
+public interface GeometricObject extends Comparable<GeometricObject>{
+    void setContext(GeometricContext context);
 }

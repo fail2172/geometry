@@ -1,13 +1,14 @@
 package com.epam.jwd.repo.impl;
 
 import com.epam.jwd.entity.GeometricObject;
-import com.epam.jwd.entity.context.GeometricContext;
-import com.epam.jwd.exception.NotFoundGeometricObjectException;
+import com.epam.jwd.entity.impl.GeometricContext;
+import com.epam.jwd.exception.GeometricObjectNotFoundException;
 import com.epam.jwd.reader.MessageReader;
 import com.epam.jwd.reader.impl.MessageReaderImpl;
 import com.epam.jwd.repo.Repository;
 import com.epam.jwd.repo.Specification;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -29,13 +30,13 @@ public class RepositoryImpl<T extends GeometricObject> implements Repository<T> 
     }
 
     @Override
-    public void remove(int id) throws NotFoundGeometricObjectException {
+    public void remove(int id) throws GeometricObjectNotFoundException {
         T removeCone = this.read(id);
         geometricObjects.remove(removeCone);
     }
 
     @Override
-    public T update(int id, GeometricContext newContext) throws NotFoundGeometricObjectException {
+    public T update(int id, GeometricContext newContext) throws GeometricObjectNotFoundException {
         T variableCone = this.read(id);
         variableCone.setContext(newContext);
 
@@ -43,11 +44,11 @@ public class RepositoryImpl<T extends GeometricObject> implements Repository<T> 
     }
 
     @Override
-    public T read(int id) throws NotFoundGeometricObjectException {
+    public T read(int id) throws GeometricObjectNotFoundException {
         try {
             return geometricObjects.get(id);
         } catch (IndexOutOfBoundsException e){
-            throw new NotFoundGeometricObjectException(messageReader.
+            throw new GeometricObjectNotFoundException(messageReader.
                     getMessage(EXCEPTIONS_PROPERTIES,"NOT_FOUND_GEOMETRIC_OBJECT"), e);
         }
     }

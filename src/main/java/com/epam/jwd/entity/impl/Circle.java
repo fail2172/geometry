@@ -1,7 +1,6 @@
 package com.epam.jwd.entity.impl;
 
 import com.epam.jwd.entity.GeometricObject;
-import com.epam.jwd.entity.context.GeometricContext;
 
 public class Circle implements GeometricObject {
 

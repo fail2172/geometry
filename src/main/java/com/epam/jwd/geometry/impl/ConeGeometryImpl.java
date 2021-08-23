@@ -66,7 +66,8 @@ public class ConeGeometryImpl implements ConeGeometry {
 
     private void planeIntersection(Cone cone) throws NoPlaneIntersectionException {
         if (cone.getZOfCenterBase() >= 0) {
-            throw new NoPlaneIntersectionException(messageReader.getMessage(EXCEPTIONS_PROPERTIES, "NO_PLANE_INTERSECTION"));
+            throw new NoPlaneIntersectionException(messageReader
+                    .getMessage(EXCEPTIONS_PROPERTIES, "NO_PLANE_INTERSECTION"));
         }
     }
 

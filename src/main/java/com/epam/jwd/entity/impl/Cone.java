@@ -1,7 +1,6 @@
 package com.epam.jwd.entity.impl;
 
 import com.epam.jwd.entity.GeometricObject;
-import com.epam.jwd.entity.context.GeometricContext;
 import com.epam.jwd.geometry.ConeGeometry;
 import com.epam.jwd.geometry.impl.ConeGeometryImpl;
 import com.epam.jwd.registrar.CustomPublisher;

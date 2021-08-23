@@ -2,6 +2,8 @@ package com.epam.jwd.geometry;
 
 import com.epam.jwd.entity.impl.Cone;
 
+import java.io.FileNotFoundException;
+
 public interface ConeGeometry extends Geometry {
     double surfaceArea(Cone cone);
     double volume(Cone cone);

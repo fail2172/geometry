@@ -25,7 +25,7 @@ public class ConeSubscriberImpl implements ConeSubscriber {
     }
 
     @Override
-    public void update(Cone cone) {
+    public void update(Cone cone)  {
         height = cone.getHeight();
         radius = cone.getRadius();
         volume = geometry.volume(cone);

@@ -1,6 +1,7 @@
 package com.epam.jwd.entity.context;
 
-import com.epam.jwd.entity.GeometricObjectType;
+import com.epam.jwd.entity.impl.GeometricObjectType;
+import com.epam.jwd.entity.impl.GeometricContext;
 import com.epam.jwd.exception.IncorrectInputException;
 import org.testng.annotations.Test;
 
@@ -21,21 +22,5 @@ public class GeometricContextTest {
                 GeometricContext.of(GeometricObjectType.CONE, X, Y, Z).setRadius(RADIUS).setHeight(HEIGHT).build();
 
         assertNotNull(context);
-    }
-
-    @Test
-    public void stringToContext_shouldReturnGeometricContext(){
-        try {
-            GeometricContext context = GeometricContext.stringToContext("10.0;10.0;0.0,0.0,0.0");
-
-            assertNotNull(context);
-        } catch (IncorrectInputException e) {
-            fail();
-        }
-    }
-
-    @Test(expectedExceptions = IncorrectInputException.class)
-    public void stringToContext_shouldReturnIncorrectInputException() throws IncorrectInputException {
-        GeometricContext.stringToContext("10.0;10.0;;lsdf0.0,0.0,0.0");
     }
 }

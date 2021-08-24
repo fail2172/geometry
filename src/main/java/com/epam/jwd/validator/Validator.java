@@ -1,11 +1,7 @@
 package com.epam.jwd.validator;
 
-import com.epam.jwd.exception.IncorrectInputException;
+import com.epam.jwd.entity.impl.GeometricObjectType;
 
 public interface Validator {
-    boolean checkContext(String stringContext) throws IncorrectInputException;
-
-    static Validator instance(){
-        return new GeometricContextValidator();
-    }
+    boolean checkContext(GeometricObjectType contextType, String stringContext);
 }

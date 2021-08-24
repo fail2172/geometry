@@ -8,8 +8,4 @@ import java.util.List;
 
 public interface CustomFileReader {
     List<GeometricObject> readFile(File file) throws IOException;
-
-    static CustomFileReader instance() {
-        return new CustomFileReaderImpl();
-    }
 }
